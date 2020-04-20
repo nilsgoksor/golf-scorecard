@@ -1,5 +1,5 @@
 import React from "react";
-import AddPlayers from "./AddPlayers";
+import PreGameSettings from "./PreGameSettings";
 import {
   TitleContainer,
   PageTitle,
@@ -13,7 +13,7 @@ const StartPage = () => {
         <PageTitle>start</PageTitle>
         <GolfIcon />
       </TitleContainer>
-      <AddPlayers />
+      <PreGameSettings />
     </>
   );
 };

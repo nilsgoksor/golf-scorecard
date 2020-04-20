@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { ADD_PLAYER } from "../state/actionTypes";
+import { useStateValue } from "../state/stateprovider";
+import {
+  ConfirmButton,
+  UserInput,
+} from "../styled-components/styled-components";
 
-const ProvidePlayerDetails = ({ onPlayerAdded }) => {
+const AddPlayer = () => {
+  // eslint-disable-next-line no-empty-pattern
+  const [{}, dispatch] = useStateValue();
+
   const [readyToAdd, setReadyToAdd] = useState(false);
   const [name, setName] = useState("");
   const [hcp, setHcp] = useState("");
@@ -11,8 +20,10 @@ const ProvidePlayerDetails = ({ onPlayerAdded }) => {
   }, [name, hcp]);
 
   const addPlayerhandler = () => {
-    const player = { name, hcp };
-    onPlayerAdded(player);
+    dispatch({
+      type: ADD_PLAYER,
+      player: { name, hcp },
+    });
     setName("");
     setHcp("");
   };
@@ -35,7 +46,7 @@ const ProvidePlayerDetails = ({ onPlayerAdded }) => {
         addPlayerhandler();
       }}
     >
-      <PlayerInput
+      <UserInput
         placeholder="name"
         minLength="3"
         maxLength="20"
@@ -44,7 +55,7 @@ const ProvidePlayerDetails = ({ onPlayerAdded }) => {
           setName(e.target.value);
         }}
       />
-      <PlayerInput
+      <UserInput
         placeholder="hcp"
         value={hcp}
         type="number"
@@ -55,39 +66,18 @@ const ProvidePlayerDetails = ({ onPlayerAdded }) => {
           isValidHandicap(e.target.value);
         }}
       />
-      <Button disabled={!readyToAdd}>add player</Button>
+      <ConfirmButton disabled={!readyToAdd}>add player</ConfirmButton>
     </PlayerDetailsForm>
   );
 };
-export default ProvidePlayerDetails;
+export default AddPlayer;
 
-const PlayerDetailsForm = styled.form``;
+const PlayerDetailsForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-const PlayerInput = styled.input`
-  background-color: transparent;
-  padding: 5px;
-  margin: 0px 5px;
-  color: #fff;
-  min-width: 50px;
-
-  ::placeholder {
-    color: #fff;
-    opacity: 0.5;
-  }
-`;
-
-const Button = styled.button`
-  width: 100px;
-  height: 25px;
-  border-radius: 2px;
-  padding: 5px;
-  background-color: #fff;
-  color: #000;
-
-  :disabled {
-    color: grey;
-  }
-  :hover {
-    color: green;
+  @media (min-width: ${(p) => p.theme.width.default}) {
+    flex-direction: row;
   }
 `;

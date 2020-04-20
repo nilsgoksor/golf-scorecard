@@ -4,16 +4,19 @@ import { createBrowserHistory } from "history";
 import { ThemeProvider } from "styled-components";
 import theme from "./styled-components/theme";
 import StartPage from "./components/StartPage";
-
+import { StateProvider } from "./state/stateprovider";
+import { initialState, reducer } from "./state/reducer";
 function App() {
   const history = createBrowserHistory();
 
   return (
     <React.Fragment>
-      <ThemeProvider theme={{ theme }}>
-        <Router history={history}>
-          <Route path="/" exact component={StartPage}></Route>
-        </Router>
+      <ThemeProvider theme={theme}>
+        <StateProvider initialState={initialState} reducer={reducer}>
+          <Router history={history}>
+            <Route path="/" exact component={StartPage}></Route>
+          </Router>
+        </StateProvider>
       </ThemeProvider>
     </React.Fragment>
   );
