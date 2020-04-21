@@ -4,6 +4,10 @@ export const PageTitle = styled.h1`
   margin-right: 15px;
 `;
 
+export const SmallHeading = styled.h4`
+  margin-bottom: 0;
+`;
+
 export const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -11,8 +15,9 @@ export const TitleContainer = styled.div`
 `;
 
 export const ConfirmButton = styled.button`
+  min-width: ${(p) => p.theme.input.buttonWidth};
   height: ${(p) => p.theme.input.buttonHeight};
-  margin: ${(p) => p.theme.margin.default} 0px;
+  margin: ${(p) => p.theme.margin.large} 0px;
   color: ${(p) => p.theme.color.white};
   background-color: transparent;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -37,14 +42,24 @@ export const ConfirmButton = styled.button`
   }
 `;
 
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: ${(p) => p.theme.width.default}) {
+    height: ${(p) => p.theme.input.containerHeight};
+  }
+`;
+
 export const UserInput = styled.input`
   width: ${(p) => p.theme.input.width};
   height: ${(p) => p.theme.input.height};
   margin: ${(p) => p.theme.margin.default} 0px;
   background-color: transparent;
   color: ${(p) => p.theme.color.white};
-
   border: 0.16em solid ${(p) => p.theme.color.white};
+  padding-left: 5px;
 
   ::placeholder {
     color: ${(p) => p.theme.color.white};

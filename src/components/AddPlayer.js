@@ -5,6 +5,7 @@ import { useStateValue } from "../state/stateprovider";
 import {
   ConfirmButton,
   UserInput,
+  InputContainer,
 } from "../styled-components/styled-components";
 
 const AddPlayer = () => {
@@ -46,27 +47,36 @@ const AddPlayer = () => {
         addPlayerhandler();
       }}
     >
-      <UserInput
-        placeholder="name"
-        minLength="3"
-        maxLength="20"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-      <UserInput
-        placeholder="hcp"
-        value={hcp}
-        type="number"
-        step="0.1"
-        min="0"
-        max="36"
-        onChange={(e) => {
-          isValidHandicap(e.target.value);
-        }}
-      />
-      <ConfirmButton disabled={!readyToAdd}>add player</ConfirmButton>
+      <InputContainer>
+        <UserInput
+          placeholder="name"
+          minLength="3"
+          maxLength="20"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+      </InputContainer>
+      <InputContainer>
+        <UserInput
+          placeholder="hcp"
+          value={hcp}
+          type="number"
+          min="0"
+          max="36"
+          step="0.1"
+          onChange={(e) => {
+            isValidHandicap(e.target.value);
+          }}
+        />
+        <LinkText href="https://mingolf.golf.se/" target="_blank">
+          Forgot your hcp?
+        </LinkText>
+      </InputContainer>
+      <InputContainer>
+        <ConfirmButton disabled={!readyToAdd}>add player</ConfirmButton>
+      </InputContainer>
     </PlayerDetailsForm>
   );
 };
@@ -80,4 +90,10 @@ const PlayerDetailsForm = styled.form`
   @media (min-width: ${(p) => p.theme.width.default}) {
     flex-direction: row;
   }
+`;
+
+const LinkText = styled.a`
+  color: ${(p) => p.theme.color.white};
+  text-decoration: none;
+  font-size: 11px;
 `;
