@@ -18,7 +18,7 @@ function App() {
           <Router history={history}>
             <Switch>
               <Route path="/" exact component={StartPage}></Route>
-              <Route path="/hole/:hole" exact component={HolePage}></Route>
+              <Route path="/hole" exact component={HolePage}></Route>
               <Route component={NotFoundPage}></Route>
             </Switch>
           </Router>

@@ -1,5 +1,5 @@
 const theme = {
-  width: { default: "550px" },
+  width: { default: "550px", small: "200px" },
   padding: { default: "5px" },
   margin: { default: "5px", large: "20px" },
   color: { white: "#fff", black: "#000", green: "#127c54" },

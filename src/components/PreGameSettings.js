@@ -3,6 +3,7 @@ import AddPlayer from "./AddPlayer";
 import PlayerInfo from "./PlayerInfo";
 import { useStateValue } from "../state/stateprovider";
 import styled from "styled-components";
+import { SET_HOLE } from "../state/actionTypes";
 import {
   ConfirmButton,
   SmallHeading,
@@ -25,7 +26,11 @@ const PreGameSettings = ({ history }) => {
           <ConfirmButton
             disabled={players.length <= 0}
             onClick={() => {
-              history.push(`/hole/${1}`);
+              dispatch({
+                type: SET_HOLE,
+                hole: 1,
+              });
+              history.push(`/hole`);
             }}
           >
             start
@@ -50,6 +55,7 @@ const PlayersContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: ${(p) => p.theme.margin.large};
 
   @media (min-width: ${(p) => p.theme.width.default}) {
     flex-direction: row;

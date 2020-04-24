@@ -2,10 +2,20 @@ import styled from "styled-components";
 
 export const PageTitle = styled.h1`
   margin-right: 15px;
+  display: flex;
+`;
+
+export const MediumHeading = styled.h2`
+  margin: 0;
 `;
 
 export const SmallHeading = styled.h4`
-  margin-bottom: 0;
+  margin: 0;
+  margin-top: ${(p) => p.theme.margin.large};
+`;
+
+export const SmallText = styled.p`
+  margin: 0;
 `;
 
 export const TitleContainer = styled.div`
@@ -70,4 +80,31 @@ export const UserInput = styled.input`
   @media (min-width: ${(p) => p.theme.width.default}) {
     margin: 0px ${(p) => p.theme.margin.default};
   }
+`;
+
+export const PlayerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  width: 75px;
+  height: 75px;
+  padding: 3px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: ${(p) => p.theme.color.white};
+  box-shadow: -3px 3px 15px rgba(0, 0, 0, 0.35),
+    0px 0px 100px rgba(0, 0, 0, 0.25), 0px 0px 5px rgba(255, 255, 255, 0.5);
+`;
+
+export const PlayerHcpText = styled.p`
+  color: ${(p) => p.theme.color.green};
+  margin: 0px;
+`;
+export const PlayerNameText = styled.p`
+  color: ${(p) => p.theme.color.black};
+  margin: 0px;
+  width: 75px;
+  overflow-wrap: break-word;
 `;
