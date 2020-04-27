@@ -8,17 +8,15 @@ import { useStateValue } from "../state/stateprovider";
 import { SET_PLAYER_STROKES } from "../state/actionTypes";
 import MicIcon from "@material-ui/icons/Mic";
 import { useSpeechRecognition, useSpeechSynthesis } from "react-speech-kit";
-import {
-  ONE,
-  TWO,
-  THREE,
-  FOUR,
-  FIVE,
-  SIX,
-  SEVEN,
-  EIGHT,
-  NINE,
-} from "../constants/Voiceinput";
+const ONE = [1, "1", "one", "what", "Wang"];
+const TWO = [2, "2", "two", "to", "too"];
+const THREE = [3, "3", "three", "tree", "free"];
+const FOUR = [4, "4", "four", "for"];
+const FIVE = [5, "5", "five", "find", "sorry"];
+const SIX = [6, "6", "six"];
+const SEVEN = [7, "7", "seven", "send", "send a", "set a"];
+const EIGHT = [8, "8", "eight", "AIDS", "hey"];
+const NINE = [9, "9", "nine", "not", "mine"];
 
 const SetPlayerStrokes = ({ player, holeData }) => {
   // eslint-disable-next-line no-unused-vars
