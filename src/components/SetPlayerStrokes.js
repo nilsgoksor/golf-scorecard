@@ -17,6 +17,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
   const { listen, listening, stop } = useSpeechRecognition({
     onResult: (result) => setResult(result),
   });
+
   const { speak } = useSpeechSynthesis();
 
   const [newStrokes, setNewStrokes] = useState(null);
@@ -58,6 +59,9 @@ const SetPlayerStrokes = ({ player, holeData }) => {
       if (validInput === 1) {
         speak({ text: "hole in one!" });
         speak({ text: `congratulations, ${player.name}` });
+      } else if (validInput === holeData.par - 3) {
+        speak({ text: "albatros!" });
+        speak({ text: `brilliant, ${player.name}` });
       } else if (validInput === holeData.par - 2) {
         speak({ text: "eagle!" });
         speak({ text: `splendid, ${player.name}` });
@@ -88,7 +92,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
       dispatch({
         type: SET_PLAYER_STROKES,
         strokes: parseInt(newStrokes),
-        hole: holeData.hole,
+        holeData: holeData,
         player: player,
       });
     }
@@ -104,10 +108,8 @@ const SetPlayerStrokes = ({ player, holeData }) => {
           <VoiceEditor
             onClick={() => {
               if (listening) {
-                console.log("stop");
                 stop();
               } else {
-                console.log("start");
                 listen();
               }
             }}
@@ -122,7 +124,6 @@ const SetPlayerStrokes = ({ player, holeData }) => {
             max="9"
             step="1"
             onChange={(e) => {
-              console.log("e.target.value", e.target.value);
               strokeInputHandler(e.target.value);
             }}
           />

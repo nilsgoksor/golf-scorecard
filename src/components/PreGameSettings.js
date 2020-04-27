@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AddPlayer from "./AddPlayer";
 import PlayerInfo from "./PlayerInfo";
 import { useStateValue } from "../state/stateprovider";
 import styled from "styled-components";
-import { SET_HOLE } from "../state/actionTypes";
+import { SET_HOLE, SET_COURSE } from "../state/actionTypes";
 import {
   ConfirmButton,
   SmallHeading,
 } from "../styled-components/styled-components";
+import { värpingeGK, värpingeGKhcpData } from "../state/reducer";
 
 const PreGameSettings = ({ history }) => {
   const [{ players }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    dispatch({
+      type: SET_COURSE,
+      course: värpingeGK,
+      hcpData: värpingeGKhcpData,
+    });
+  }, [dispatch]);
 
   return (
     <GameSettingsContainer>

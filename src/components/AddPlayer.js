@@ -27,9 +27,11 @@ const AddPlayer = () => {
     });
     setName("");
     setHcp("");
+    document.getElementById("name").focus();
   };
 
   const isValidHandicap = (handicap) => {
+    handicap = handicap.replace(",", ".");
     if (isNaN(parseInt(handicap)) || parseInt(handicap) < 0) {
       setHcp("");
     }
@@ -37,6 +39,8 @@ const AddPlayer = () => {
       setHcp(handicap);
     } else if (handicap.length <= 3 && parseInt(handicap) >= 100) {
       setHcp(handicap / 10);
+    } else if (handicap.length === 4 && handicap.includes(".")) {
+      setHcp(handicap);
     }
   };
 
@@ -49,6 +53,7 @@ const AddPlayer = () => {
     >
       <InputContainer>
         <UserInput
+          id="name"
           placeholder="name"
           minLength="3"
           maxLength="20"
@@ -62,7 +67,7 @@ const AddPlayer = () => {
         <UserInput
           placeholder="hcp"
           value={hcp}
-          type="number"
+          // type="number"
           min="0"
           max="36"
           step="0.1"

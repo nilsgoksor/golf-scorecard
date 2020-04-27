@@ -7,7 +7,7 @@ import {
 } from "../styled-components/styled-components";
 import GolfIcon from "./GolfIcon";
 import HoleSwitcher from "./HoleSwitcher";
-import FinishRound from "./FinishRound";
+import RoundData from "./RoundData";
 import styled from "styled-components";
 import HoleData from "./HoleData";
 
@@ -63,7 +63,7 @@ const HolePage = ({ history }) => {
       ></HoleSwitcher>
       <ContentContainer>
         <HoleData holeData={course[hole - 1]} players={players} hole={hole} />
-        <FinishRound></FinishRound>
+        <RoundData history={history} />
       </ContentContainer>
     </HolePageContainer>
   );
