@@ -8,7 +8,17 @@ import { useStateValue } from "../state/stateprovider";
 import { SET_PLAYER_STROKES } from "../state/actionTypes";
 import MicIcon from "@material-ui/icons/Mic";
 import { useSpeechRecognition, useSpeechSynthesis } from "react-speech-kit";
-import * as allowedInputArray from "../constants/Voiceinput";
+import {
+  ONE,
+  TWO,
+  THREE,
+  FOUR,
+  FIVE,
+  SIX,
+  SEVEN,
+  EIGHT,
+  NINE,
+} from "../constants/Voiceinput";
 
 const SetPlayerStrokes = ({ player, holeData }) => {
   // eslint-disable-next-line no-unused-vars
@@ -34,23 +44,23 @@ const SetPlayerStrokes = ({ player, holeData }) => {
 
   useEffect(() => {
     let validInput = null;
-    if (allowedInputArray.ONE.includes(result)) {
+    if (ONE.includes(result)) {
       validInput = 1;
-    } else if (allowedInputArray.TWO.includes(result)) {
+    } else if (TWO.includes(result)) {
       validInput = 2;
-    } else if (allowedInputArray.THREE.includes(result)) {
+    } else if (THREE.includes(result)) {
       validInput = 3;
-    } else if (allowedInputArray.FOUR.includes(result)) {
+    } else if (FOUR.includes(result)) {
       validInput = 4;
-    } else if (allowedInputArray.FIVE.includes(result)) {
+    } else if (FIVE.includes(result)) {
       validInput = 5;
-    } else if (allowedInputArray.SIX.includes(result)) {
+    } else if (SIX.includes(result)) {
       validInput = 6;
-    } else if (allowedInputArray.SEVEN.includes(result)) {
+    } else if (SEVEN.includes(result)) {
       validInput = 7;
-    } else if (allowedInputArray.EIGHT.includes(result)) {
+    } else if (EIGHT.includes(result)) {
       validInput = 8;
-    } else if (allowedInputArray.NINE.includes(result)) {
+    } else if (NINE.includes(result)) {
       validInput = 9;
     }
     if (validInput) {
