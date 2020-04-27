@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useStateValue } from "../state/stateprovider";
 
 const PlayerSummary = () => {
+  // eslint-disable-next-line no-unused-vars
   const [{ players }, dispatch] = useStateValue();
 
   return players.map((player) => {

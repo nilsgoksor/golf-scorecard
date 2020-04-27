@@ -11,7 +11,8 @@ import { useSpeechRecognition, useSpeechSynthesis } from "react-speech-kit";
 import * as allowedInputArray from "../constants/Voiceinput";
 
 const SetPlayerStrokes = ({ player, holeData }) => {
-  const [{}, dispatch] = useStateValue();
+  // eslint-disable-next-line no-unused-vars
+  const [{ players }, dispatch] = useStateValue();
 
   const [result, setResult] = useState();
   const { listen, listening, stop } = useSpeechRecognition({

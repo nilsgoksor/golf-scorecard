@@ -10,6 +10,7 @@ import {
 } from "../styled-components/styled-components";
 
 const PlayerInfo = ({ player }) => {
+  // eslint-disable-next-line no-unused-vars
   const [{ players }, dispatch] = useStateValue();
   const [hover, setHover] = useState(false);
 

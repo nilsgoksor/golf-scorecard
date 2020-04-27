@@ -4,7 +4,6 @@ import {
   PageTitle,
   ConfirmButton,
   PlayerContainer,
-  PlayerHcpText,
   PlayerNameText,
 } from "../styled-components/styled-components";
 import GolfIcon from "./GolfIcon";
@@ -23,22 +22,19 @@ const RoundCompletedPage = ({ history }) => {
     let winners = [];
     const table = players.map((p) => {
       let totalScore = 0;
-      p.roundData.map((r) => {
-        totalScore = totalScore + r.data.score;
-      });
-      console.log("p.name", p.name);
-      if (totalScore > winnerScore) {
+      p.roundData.map((r) => (totalScore = totalScore + r.data.score));
+      if (totalScore === winnerScore) {
         winnerScore = totalScore;
         winners.push(p.name);
+      } else if (totalScore > winnerScore) {
+        winners = [p.name];
+        winnerScore = totalScore;
       }
       return { name: p.name, totalScore };
     });
     setTable(table);
     setWinners(winners);
   }, [players]);
-
-  console.log("winners", winners);
-  console.log(winners.includes("adda"));
 
   return (
     <RoundCompletedPageContainer>
