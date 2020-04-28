@@ -175,6 +175,11 @@ const ScoreText = styled.input`
   font-weight: bold;
   padding: 0;
   border: 0.3px solid ${(p) => p.theme.color.green};
+
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  padding-left: 15px;
 `;
 
 const VoiceEditor = styled.div`
