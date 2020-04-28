@@ -84,7 +84,7 @@ const HoleText = styled.input`
 
 const ContentContainer = styled.div`
   display: flex;
-  height: 80vh;
+  height: 75vh;
   flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
