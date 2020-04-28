@@ -154,7 +154,6 @@ const SetPlayerStrokes = ({ player, holeData }) => {
             type="number"
             pattern="\d*"
             min="1"
-            max="9"
             step="1"
             onChange={(e) => {
               strokeInputHandler(e.target.value);
