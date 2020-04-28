@@ -74,7 +74,6 @@ export const UserInput = styled.input`
   ::placeholder {
     color: ${(p) => p.theme.color.white};
     opacity: 0.8;
-    padding: 5px;
   }
 
   @media (min-width: ${(p) => p.theme.width.default}) {
