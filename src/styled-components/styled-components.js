@@ -107,3 +107,9 @@ export const PlayerNameText = styled.p`
   width: 75px;
   overflow-wrap: break-word;
 `;
+
+export const LinkText = styled.a`
+  color: ${(p) => p.theme.color.white};
+  text-decoration: none;
+  font-size: 11px;
+`;

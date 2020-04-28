@@ -6,6 +6,7 @@ import {
   ConfirmButton,
   UserInput,
   InputContainer,
+  LinkText,
 } from "../styled-components/styled-components";
 
 const AddPlayer = () => {
@@ -96,10 +97,4 @@ const PlayerDetailsForm = styled.form`
   @media (min-width: ${(p) => p.theme.width.default}) {
     flex-direction: row;
   }
-`;
-
-const LinkText = styled.a`
-  color: ${(p) => p.theme.color.white};
-  text-decoration: none;
-  font-size: 11px;
 `;

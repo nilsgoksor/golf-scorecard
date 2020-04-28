@@ -5,6 +5,7 @@ import {
   ConfirmButton,
   PlayerContainer,
   PlayerNameText,
+  LinkText,
 } from "../styled-components/styled-components";
 import GolfIcon from "./GolfIcon";
 import { useStateValue } from "../state/stateprovider";
@@ -56,6 +57,9 @@ const RoundCompletedPage = ({ history }) => {
           <PlayerSummary />
         </SummaryContainer>
       </WinnerSummaryContainer>
+      <LinkText href="https://mingolf.golf.se/" target="_blank">
+        Click here to register your round
+      </LinkText>
       <ConfirmButton
         onClick={() => {
           history.push(`/`);
