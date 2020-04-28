@@ -67,7 +67,8 @@ const AddPlayer = () => {
         <UserInput
           placeholder="hcp"
           value={hcp}
-          // type="number"
+          type="number"
+          pattern="\d*"
           min="0"
           max="36"
           step="0.1"
