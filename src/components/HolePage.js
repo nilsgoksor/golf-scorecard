@@ -84,13 +84,15 @@ const HoleText = styled.input`
 
 const ContentContainer = styled.div`
   display: flex;
-  height: 75vh;
   flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 `;
+
 const HolePageContainer = styled.div`
   width: 100%;
+  height: 75%;
   margin: auto;
 
   @media (min-width: ${(p) => p.theme.width.default}) {
