@@ -14,7 +14,7 @@ const PlayerSummary = () => {
         {player.roundData.map((holeData) => {
           totalScore += holeData.data.score;
           return (
-            <ScoreContainer>
+            <ScoreContainer key={`${player.name}-${holeData.hole}`}>
               {holeData.data.strokes ? holeData.data.score : "-"}
             </ScoreContainer>
           );
