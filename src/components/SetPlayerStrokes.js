@@ -173,6 +173,7 @@ const ScoreText = styled.input`
   outline: 0;
   font-size: 52px;
   font-weight: bold;
+  padding: 0;
   border: 0.3px solid ${(p) => p.theme.color.green};
 `;
 
