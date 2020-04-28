@@ -57,19 +57,21 @@ const RoundCompletedPage = ({ history }) => {
           <PlayerSummary />
         </SummaryContainer>
       </WinnerSummaryContainer>
-      <LinkText href="https://mingolf.golf.se/" target="_blank">
-        Click here to register your round
-      </LinkText>
-      <ConfirmButton
-        onClick={() => {
-          history.push(`/`);
-          dispatch({
-            type: RESET_ROUND_DATA,
-          });
-        }}
-      >
-        new round
-      </ConfirmButton>
+      <ActionContainer>
+        <LinkText href="https://mingolf.golf.se/" target="_blank">
+          Click here to register your round
+        </LinkText>
+        <ConfirmButton
+          onClick={() => {
+            history.push(`/`);
+            dispatch({
+              type: RESET_ROUND_DATA,
+            });
+          }}
+        >
+          new round
+        </ConfirmButton>
+      </ActionContainer>
     </RoundCompletedPageContainer>
   );
 };
@@ -80,6 +82,12 @@ const PlayerSummaryContainer = styled(PlayerContainer)`
   display: flex;
   justify-content: center;
   background-color: ${(p) => p.golden && "#FBEC49"};
+`;
+const ActionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const RoundCompletedPageContainer = styled.div`
