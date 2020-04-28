@@ -61,8 +61,13 @@ export const reducer = (state, action) => {
           action.holeData.par + modifiedRoundData[editIndex].data.extraStrokes;
         const playerScore = 2 + playerPar - action.strokes;
         modifiedRoundData[editIndex].data.strokes = action.strokes;
-        modifiedRoundData[editIndex].data.score =
-          playerScore >= 0 ? playerScore : 0;
+
+        if (action.strokes === null) {
+          modifiedRoundData[editIndex].data.score = null;
+        } else {
+          modifiedRoundData[editIndex].data.score =
+            playerScore >= 0 ? playerScore : 0;
+        }
 
         const modifiedPlayers = state.players.map((p) => {
           if (p.name === action.player.name) {

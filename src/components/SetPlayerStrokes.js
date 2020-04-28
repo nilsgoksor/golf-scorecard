@@ -41,14 +41,13 @@ const SetPlayerStrokes = ({ player, holeData }) => {
   };
 
   const [newStrokes, setNewStrokes] = useState(null);
-  const [preSetStrokes, setPreSetStrokes] = useState(null);
 
   useEffect(() => {
     const roundData = player.roundData.find(
       (round) => round.hole === holeData.hole
     );
     if (roundData) {
-      setPreSetStrokes(roundData.data.strokes);
+      setNewStrokes(roundData.data.strokes);
     }
   }, [holeData, player.roundData]);
 
@@ -91,7 +90,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
   }, [readyToSpeak]);
 
   const speakNewResult = (result) => {
-    speak({ text: result });
+    speak({ text: result || "none" });
     if (result === 1) {
       speak({ text: "hole in one!" });
       speak({ text: `congratulations, ${player.name}` });
@@ -112,28 +111,29 @@ const SetPlayerStrokes = ({ player, holeData }) => {
   };
 
   const strokeInputHandler = (input) => {
-    if (
-      input === "" ||
-      (parseInt(input) >= 0 && parseInt(input) <= 9 && input.length === 1)
-    ) {
-      setNewStrokes(parseInt(input));
+    if (isNaN(input) || input === "") {
       stop();
+      setNewStrokes(null);
+    }
+    if (parseInt(input) >= 0 && parseInt(input) <= 9 && input.length === 1) {
+      stop();
+      setNewStrokes(parseInt(input));
     }
   };
 
   useEffect(() => {
-    if (newStrokes) {
-      setReadyToSpeak(false);
-      setTimeout(() => {
-        setReadyToSpeak(true);
-      }, 2000);
-      dispatch({
-        type: SET_PLAYER_STROKES,
-        strokes: parseInt(newStrokes),
-        holeData: holeData,
-        player: player,
-      });
-    }
+    setReadyToSpeak(false);
+    setTimeout(() => {
+      setReadyToSpeak(true);
+    }, 2000);
+
+    dispatch({
+      type: SET_PLAYER_STROKES,
+      strokes: newStrokes,
+      holeData: holeData,
+      player: player,
+    });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newStrokes]);
 
@@ -150,7 +150,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
             <MicIcon style={{ fontSize: 40 }} />
           </VoiceEditor>
           <ScoreText
-            value={newStrokes || preSetStrokes || ""}
+            value={newStrokes || ""}
             type="number"
             pattern="\d*"
             min="1"
@@ -169,16 +169,11 @@ export default SetPlayerStrokes;
 
 const ScoreText = styled.input`
   cursor: pointer;
-  background: transparent;
   color: ${(p) => p.theme.color.green};
-  border: none;
   outline: 0;
   font-size: 52px;
   font-weight: bold;
-  border-bottom: 3px solid ${(p) => p.theme.color.green};
-  margin-left: 5px;
-  margin-bottom: 5px;
-  padding: 0px 15px;
+  border: 0.3px solid ${(p) => p.theme.color.green};
 `;
 
 const VoiceEditor = styled.div`
