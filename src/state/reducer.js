@@ -87,7 +87,7 @@ const getRoundData = (course, hcpData, hcp) => {
   const courseExtraStrokes = Math.round(totalExtraStrokes / (18 / nbrOfHoles));
 
   const strokePerHole =
-    (courseExtraStrokes - (courseExtraStrokes % nbrOfHoles)) % nbrOfHoles;
+    (courseExtraStrokes - (courseExtraStrokes % nbrOfHoles)) / nbrOfHoles;
   const additionalStrokes = courseExtraStrokes % nbrOfHoles;
 
   return course.map((holeData) => {
