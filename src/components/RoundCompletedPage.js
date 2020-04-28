@@ -79,8 +79,9 @@ const PlayerSummaryContainer = styled(PlayerContainer)`
 `;
 
 const RoundCompletedPageContainer = styled.div`
+  width: 100%;
+  margin: auto;
   @media (min-width: ${(p) => p.theme.width.default}) {
-    margin: auto;
     width: ${(p) => p.theme.width.default};
   }
 `;
