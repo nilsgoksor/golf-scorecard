@@ -28,16 +28,27 @@ const SetPlayerStrokes = ({ player, holeData }) => {
     onResult: (result) => setResult(result),
   });
 
-  const { speak } = useSpeechSynthesis();
+  const setListening = (listenStatus) => {
+    const isChrome = !!window.chrome;
+    if (!isChrome) {
+      return;
+    }
+    if (!listenStatus) {
+      listen();
+    } else {
+      stop();
+    }
+  };
 
   const [newStrokes, setNewStrokes] = useState(null);
+  const [preSetStrokes, setPreSetStrokes] = useState(null);
 
   useEffect(() => {
     const roundData = player.roundData.find(
       (round) => round.hole === holeData.hole
     );
     if (roundData) {
-      setNewStrokes(roundData.data.strokes);
+      setPreSetStrokes(roundData.data.strokes);
     }
   }, [holeData, player.roundData]);
 
@@ -65,27 +76,40 @@ const SetPlayerStrokes = ({ player, holeData }) => {
     if (validInput) {
       stop();
       setNewStrokes(validInput);
-      speak({ text: validInput });
-      if (validInput === 1) {
-        speak({ text: "hole in one!" });
-        speak({ text: `congratulations, ${player.name}` });
-      } else if (validInput === holeData.par - 3) {
-        speak({ text: "albatros!" });
-        speak({ text: `brilliant, ${player.name}` });
-      } else if (validInput === holeData.par - 2) {
-        speak({ text: "eagle!" });
-        speak({ text: `splendid, ${player.name}` });
-      } else if (validInput === holeData.par - 1) {
-        speak({ text: "birdie!" });
-        speak({ text: `well done, ${player.name}` });
-      } else if (validInput === holeData.par) {
-        speak({ text: "par!" });
-      } else if (validInput > holeData.par + 3) {
-        speak({ text: `you suck, ${player.name}` });
-      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result]);
+
+  const [readyToSpeak, setReadyToSpeak] = useState(false);
+  const { speak } = useSpeechSynthesis();
+
+  useEffect(() => {
+    if (readyToSpeak) {
+      speakNewResult(newStrokes);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [readyToSpeak]);
+
+  const speakNewResult = (result) => {
+    speak({ text: result });
+    if (result === 1) {
+      speak({ text: "hole in one!" });
+      speak({ text: `congratulations, ${player.name}` });
+    } else if (result === holeData.par - 3) {
+      speak({ text: "albatros!" });
+      speak({ text: `brilliant, ${player.name}` });
+    } else if (result === holeData.par - 2) {
+      speak({ text: "eagle!" });
+      speak({ text: `splendid, ${player.name}` });
+    } else if (result === holeData.par - 1) {
+      speak({ text: "birdie!" });
+      speak({ text: `well done, ${player.name}` });
+    } else if (result === holeData.par) {
+      speak({ text: "par!" });
+    } else if (result > holeData.par + 3) {
+      speak({ text: `you suck, ${player.name}` });
+    }
+  };
 
   const strokeInputHandler = (input) => {
     if (
@@ -99,6 +123,10 @@ const SetPlayerStrokes = ({ player, holeData }) => {
 
   useEffect(() => {
     if (newStrokes) {
+      setReadyToSpeak(false);
+      setTimeout(() => {
+        setReadyToSpeak(true);
+      }, 2000);
       dispatch({
         type: SET_PLAYER_STROKES,
         strokes: parseInt(newStrokes),
@@ -116,20 +144,15 @@ const SetPlayerStrokes = ({ player, holeData }) => {
       <InputContainer>
         <>
           <VoiceEditor
-            onClick={() => {
-              if (listening) {
-                stop();
-              } else {
-                listen();
-              }
-            }}
+            onClick={() => setListening(listening)}
             listening={listening}
           >
             <MicIcon style={{ fontSize: 40 }} />
           </VoiceEditor>
           <ScoreText
-            value={newStrokes || ""}
+            value={newStrokes || preSetStrokes || ""}
             type="number"
+            pattern="\d*"
             min="1"
             max="9"
             step="1"
