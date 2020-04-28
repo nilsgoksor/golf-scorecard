@@ -179,7 +179,7 @@ const ScoreText = styled.input`
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  padding: 0px 15px;
+  padding: 0px 10px;
 `;
 
 const VoiceEditor = styled.div`
@@ -217,6 +217,5 @@ const SetPlayerStrokesContainer = styled.div`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: space-between;
-  padding: 10px;
   margin-top: 5px;
 `;

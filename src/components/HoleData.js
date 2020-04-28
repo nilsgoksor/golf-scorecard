@@ -47,6 +47,7 @@ const EditPlayerStatsContainer = styled(PlayerContainer)`
   }
   width: ${(p) => p.selected && "210px"};
   height: ${(p) => p.selected && "210px"};
+  padding: ${(p) => p.selected && "10px"};
   transition: all 1s;
 `;
 
