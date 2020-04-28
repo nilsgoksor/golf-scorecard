@@ -43,10 +43,10 @@ export default HoleData;
 const EditPlayerStatsContainer = styled(PlayerContainer)`
   &:hover {
     cursor: ${(p) => !p.selected && "pointer"};
-    border: ${(p) => !p.selected && "3px solid yellow"};
+    border: ${(p) => !p.selected && "3px soid yellow"};
   }
-  width: ${(p) => p.selected && "200px"};
-  height: ${(p) => p.selected && "200px"};
+  width: ${(p) => p.selected && "210px"};
+  height: ${(p) => p.selected && "210px"};
   transition: all 1s;
 `;
 

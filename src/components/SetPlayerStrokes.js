@@ -8,6 +8,7 @@ import { useStateValue } from "../state/stateprovider";
 import { SET_PLAYER_STROKES } from "../state/actionTypes";
 import MicIcon from "@material-ui/icons/Mic";
 import { useSpeechRecognition, useSpeechSynthesis } from "react-speech-kit";
+
 const ONE = [1, "1", "one", "what", "Wang"];
 const TWO = [2, "2", "two", "to", "too"];
 const THREE = [3, "3", "three", "tree", "free"];
@@ -149,12 +150,12 @@ const ScoreText = styled.input`
   color: ${(p) => p.theme.color.green};
   border: none;
   outline: 0;
-  font-size: 32px;
+  font-size: 52px;
   font-weight: bold;
   border-bottom: 3px solid ${(p) => p.theme.color.green};
-  margin: 5px;
+  margin-left: 5px;
   margin-bottom: 5px;
-  padding: 0;
+  padding: 0px 15px;
 `;
 
 const VoiceEditor = styled.div`
@@ -167,7 +168,8 @@ const VoiceEditor = styled.div`
   animation: ${(p) => p.listening && `border-pulsate 1s infinite`};
   box-sizing: padding-box;
   margin: 5px;
-  padding: 10px;
+  padding: 15px;
+
   @keyframes border-pulsate {
     0% {
       background-color: ${(p) => p.theme.color.green};
@@ -191,5 +193,5 @@ const SetPlayerStrokesContainer = styled.div`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: space-between;
-  margin: 5px;
+  margin-top: 5px;
 `;
