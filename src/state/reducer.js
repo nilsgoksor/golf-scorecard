@@ -156,13 +156,13 @@ export const värpingeGKhcpData = [
 ];
 
 export const värpingeGK = [
-  { hole: 1, name: "pilevallen", length: 451, par: 5, index: 6 },
-  { hole: 2, name: "ravinen", length: 157, par: 3, index: 5 },
-  { hole: 3, name: "bäckarännan", length: 251, par: 4, index: 9 },
-  { hole: 4, name: "frimärket", length: 114, par: 3, index: 2 },
-  { hole: 5, name: "vången", length: 161, par: 3, index: 7 },
-  { hole: 6, name: "mossen", length: 503, par: 5, index: 4 },
-  { hole: 7, name: "märgelhålet", length: 345, par: 4, index: 1 },
-  { hole: 8, name: "markvägen", length: 149, par: 3, index: 8 },
-  { hole: 9, name: "möllekullen", length: 401, par: 4, index: 3 },
+  { hole: 1, name: "Pilevallen", length: 451, par: 5, index: 6 },
+  { hole: 2, name: "Ravinen", length: 157, par: 3, index: 5 },
+  { hole: 3, name: "Bäckarännan", length: 251, par: 4, index: 9 },
+  { hole: 4, name: "Frimärket", length: 114, par: 3, index: 2 },
+  { hole: 5, name: "Vången", length: 161, par: 3, index: 7 },
+  { hole: 6, name: "Mossen", length: 503, par: 5, index: 4 },
+  { hole: 7, name: "Märgelhålet", length: 345, par: 4, index: 1 },
+  { hole: 8, name: "Markvägen", length: 149, par: 3, index: 8 },
+  { hole: 9, name: "Möllekullen", length: 401, par: 4, index: 3 },
 ];
