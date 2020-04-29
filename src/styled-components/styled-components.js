@@ -52,6 +52,13 @@ export const ConfirmButton = styled.button`
   }
 `;
 
+export const SmallButton = styled(ConfirmButton)`
+  min-width: 0px;
+  width: 75px;
+  height: 25px;
+  margin: 0;
+`;
+
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;

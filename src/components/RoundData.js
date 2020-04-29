@@ -34,6 +34,4 @@ const RoundDataContainer = styled.div``;
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: ${(p) => p.theme.margin.default};
-  padding: 0px ${(p) => p.theme.padding.default};
 `;

@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useStateValue } from "../state/stateprovider";
 import { STROKES, POINTS, BEER } from "../constans/summary-constants";
+import {
+  SmallButton,
+  ConfirmButton,
+  MediumHeading,
+} from "../styled-components/styled-components";
+import EqualizerIcon from "@material-ui/icons/Equalizer";
 
 const PlayerSummary = () => {
   // eslint-disable-next-line no-unused-vars
   const [{ players, course }, dispatch] = useStateValue();
 
   const [type, setType] = useState(POINTS);
+  const [selecting, setSelecting] = useState(false);
 
   const getPointsSummary = () => {
     return (
@@ -100,31 +107,65 @@ const PlayerSummary = () => {
   return (
     <>
       <SummaryContainer>
-        <PlayerSummaryContainer header={true}>
-          <NameContainer>
-            <select
-              value={type}
-              onChange={(e) => {
-                setType(e.target.value);
-              }}
-            >
-              <option value={POINTS}>{POINTS}</option>
-              <option value={STROKES}>{STROKES}</option>
-              <option value={BEER}>{BEER}</option>
-            </select>
-          </NameContainer>
-          {course.map((holeData) => {
-            return (
-              <ScoreContainer key={holeData.hole} header={true}>
-                {holeData.hole}
-              </ScoreContainer>
-            );
-          })}
-          <TotalScoreContainer>{`${type}`}</TotalScoreContainer>
-        </PlayerSummaryContainer>
-        {type === POINTS && getPointsSummary()}
-        {type === STROKES && getStrokesSummary()}
-        {type === BEER && getBeerSummary()}
+        {selecting ? (
+          <>
+            <MediumHeading>Select mode</MediumHeading>
+            <SelectContainer>
+              <ConfirmButton
+                onClick={() => {
+                  setSelecting(false);
+                  setType(POINTS);
+                }}
+              >
+                {POINTS}
+              </ConfirmButton>
+              <ConfirmButton
+                onClick={() => {
+                  setSelecting(false);
+                  setType(STROKES);
+                }}
+              >
+                {STROKES}
+              </ConfirmButton>
+              <ConfirmButton
+                onClick={() => {
+                  setSelecting(false);
+                  setType(BEER);
+                }}
+              >
+                {BEER}
+              </ConfirmButton>
+            </SelectContainer>
+          </>
+        ) : (
+          <>
+            <PlayerSummaryContainer header={true}>
+              <NameContainer>
+                <SmallButton
+                  onClick={() => {
+                    setSelecting(!selecting);
+                  }}
+                >
+                  {type}
+                </SmallButton>
+              </NameContainer>
+              {course.map((holeData) => {
+                return (
+                  <ScoreContainer key={holeData.hole} header={true}>
+                    {holeData.hole}
+                  </ScoreContainer>
+                );
+              })}
+              <TotalScoreContainer>
+                <EqualizerIcon></EqualizerIcon>
+              </TotalScoreContainer>
+            </PlayerSummaryContainer>
+
+            {type === POINTS && getPointsSummary()}
+            {type === STROKES && getStrokesSummary()}
+            {type === BEER && getBeerSummary()}
+          </>
+        )}
       </SummaryContainer>
     </>
   );
@@ -136,9 +177,8 @@ const PlayerSummaryContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 100%;
   border-bottom: ${(p) => p.header && `0.3px solid ${p.theme.color.white}`};
-  padding: 2px 0px;
+  padding: 2px 2px;
 `;
 
 const NameContainer = styled.div`
@@ -150,7 +190,7 @@ const NameContainer = styled.div`
 
 const TotalScoreContainer = styled.div`
   text-align: center;
-  width: 40px;
+  width: 25px;
 `;
 
 const ScoreContainer = styled.div`
@@ -173,6 +213,11 @@ const SummaryContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border: 2px solid white;
-  margin: 15px;
-  padding: 5px ${(p) => p.theme.padding.default};
+  padding: ${(p) => p.theme.padding.defaul};
+`;
+
+const SelectContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: ${(p) => p.theme.padding.defaul};
 `;
