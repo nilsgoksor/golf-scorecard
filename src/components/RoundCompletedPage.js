@@ -53,12 +53,13 @@ const RoundCompletedPage = ({ history }) => {
               </PlayerSummaryContainer>
             );
           })}
-        <SummaryContainer>
-          <PlayerSummary />
-        </SummaryContainer>
+        <PlayerSummary />
       </WinnerSummaryContainer>
       <ActionContainer>
-        <LinkText href="https://mingolf.golf.se/" target="_blank">
+        <LinkText
+          href="https://mingolf.golf.se/Site/HCP/Adjustment"
+          target="_blank"
+        >
           Click here to register your round
         </LinkText>
         <ConfirmButton
@@ -109,13 +110,4 @@ const WinnerSummaryContainer = styled.div`
     flex-direction: row;
     width: ${(p) => p.theme.width.default};
   }
-`;
-
-const SummaryContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 2px solid white;
-  margin: 15px;
-  padding: 5px ${(p) => p.theme.padding.default};
 `;

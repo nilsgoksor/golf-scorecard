@@ -77,7 +77,7 @@ const AddPlayer = () => {
             isValidHandicap(e.target.value);
           }}
         />
-        <LinkText href="https://mingolf.golf.se/" target="_blank">
+        <LinkText href="https://mingolf.golf.se/Site/HCP" target="_blank">
           Forgot your hcp?
         </LinkText>
       </InputContainer>
