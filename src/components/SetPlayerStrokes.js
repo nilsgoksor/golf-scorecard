@@ -8,16 +8,7 @@ import { useStateValue } from "../state/stateprovider";
 import { SET_PLAYER_STROKES } from "../state/actionTypes";
 import MicIcon from "@material-ui/icons/Mic";
 import { useSpeechRecognition, useSpeechSynthesis } from "react-speech-kit";
-
-const ONE = [1, "1", "one", "what", "Wang"];
-const TWO = [2, "2", "two", "to", "too"];
-const THREE = [3, "3", "three", "tree", "free"];
-const FOUR = [4, "4", "four", "for"];
-const FIVE = [5, "5", "five", "find", "sorry"];
-const SIX = [6, "6", "six"];
-const SEVEN = [7, "7", "seven", "send", "send a", "set a"];
-const EIGHT = [8, "8", "eight", "AIDS", "hey"];
-const NINE = [9, "9", "nine", "not", "mine"];
+import * as voiceInputs from "../constans/voice-inputs";
 
 const SetPlayerStrokes = ({ player, holeData }) => {
   // eslint-disable-next-line no-unused-vars
@@ -53,23 +44,23 @@ const SetPlayerStrokes = ({ player, holeData }) => {
 
   useEffect(() => {
     let validInput = null;
-    if (ONE.includes(result)) {
+    if (voiceInputs.ONE.includes(result)) {
       validInput = 1;
-    } else if (TWO.includes(result)) {
+    } else if (voiceInputs.TWO.includes(result)) {
       validInput = 2;
-    } else if (THREE.includes(result)) {
+    } else if (voiceInputs.THREE.includes(result)) {
       validInput = 3;
-    } else if (FOUR.includes(result)) {
+    } else if (voiceInputs.FOUR.includes(result)) {
       validInput = 4;
-    } else if (FIVE.includes(result)) {
+    } else if (voiceInputs.FIVE.includes(result)) {
       validInput = 5;
-    } else if (SIX.includes(result)) {
+    } else if (voiceInputs.SIX.includes(result)) {
       validInput = 6;
-    } else if (SEVEN.includes(result)) {
+    } else if (voiceInputs.SEVEN.includes(result)) {
       validInput = 7;
-    } else if (EIGHT.includes(result)) {
+    } else if (voiceInputs.EIGHT.includes(result)) {
       validInput = 8;
-    } else if (NINE.includes(result)) {
+    } else if (voiceInputs.NINE.includes(result)) {
       validInput = 9;
     }
     if (validInput) {

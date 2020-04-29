@@ -1,0 +1,9 @@
+export const ONE = [1, "1", "one", "what", "Wang"];
+export const TWO = [2, "2", "two", "to", "too"];
+export const THREE = [3, "3", "three", "tree", "free"];
+export const FOUR = [4, "4", "four", "for"];
+export const FIVE = [5, "5", "five", "find", "sorry"];
+export const SIX = [6, "6", "six"];
+export const SEVEN = [7, "7", "seven", "send", "send a", "set a"];
+export const EIGHT = [8, "8", "eight", "AIDS", "hey"];
+export const NINE = [9, "9", "nine", "not", "mine"];
