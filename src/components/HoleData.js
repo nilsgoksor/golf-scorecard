@@ -8,20 +8,39 @@ import {
 import SetPlayerStrokes from "./SetPlayerStrokes";
 
 const HoleData = ({ players, holeData, hole }) => {
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    setSelected("");
+    setSelected(null);
   }, [hole]);
 
+  const handleMouseClick = (event, name) => {
+    if (name) {
+      setSelected(name);
+    } else {
+      const target = event.target;
+      if (selected) {
+        if (target.id !== "player-container") {
+          return;
+        }
+        setSelected(null);
+      }
+    }
+  };
+
   return (
-    <PlayersContainer>
+    <PlayersContainer
+      id="player-container"
+      onClick={(e) => {
+        handleMouseClick(e);
+      }}
+    >
       {players.map((player) => (
         <EditPlayerStatsContainer
           key={player.name}
           selected={player.name === selected}
-          onClick={() => {
-            setSelected(player.name);
+          onClick={(e) => {
+            handleMouseClick(e, player.name);
           }}
         >
           {player.name !== selected ? (
@@ -45,8 +64,8 @@ const EditPlayerStatsContainer = styled(PlayerContainer)`
     cursor: ${(p) => !p.selected && "pointer"};
     border: ${(p) => !p.selected && "3px soid yellow"};
   }
-  width: ${(p) => p.selected && "210px"};
-  height: ${(p) => p.selected && "210px"};
+  width: ${(p) => p.selected && "200px"};
+  height: ${(p) => p.selected && "200px"};
   padding: ${(p) => p.selected && "10px"};
   transition: all 1s;
 `;
