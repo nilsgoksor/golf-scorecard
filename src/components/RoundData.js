@@ -6,9 +6,7 @@ import PlayerSummary from "./PlayerSummary";
 const RoundData = ({ history }) => {
   return (
     <RoundDataContainer>
-      <SummaryContainer>
-        <PlayerSummary />
-      </SummaryContainer>
+      <PlayerSummary />
       <ButtonContainer>
         <ConfirmButton
           onClick={() => {
@@ -38,13 +36,4 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
   margin: ${(p) => p.theme.margin.default};
   padding: 0px ${(p) => p.theme.padding.default};
-`;
-
-const SummaryContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 2px solid white;
-  margin: 15px;
-  padding: 5px ${(p) => p.theme.padding.default};
 `;
