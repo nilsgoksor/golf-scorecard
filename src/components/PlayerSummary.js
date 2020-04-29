@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useStateValue } from "../state/stateprovider";
-import { STROKES, POINTS, BEER } from "../constans/summary-constants";
+import { STROKES, POINTS, MATCH } from "../constans/summary-constants";
 import {
   SmallButton,
   ConfirmButton,
@@ -64,11 +64,11 @@ const PlayerSummary = () => {
     );
   };
 
-  const getBeerSummary = () => {
+  const getMatchSummary = () => {
     return (
       <>
         {players.map((player) => {
-          let totalBeerPoints = 0;
+          let totalMatchPoints = 0;
           return (
             <PlayerSummaryContainer key={player.name}>
               <NameContainer>{`${player.name}`}</NameContainer>
@@ -83,21 +83,21 @@ const PlayerSummary = () => {
                   }
                   return null;
                 });
-                let beerPoints = 0;
+                let matchPoints = 0;
                 if (holeData.data.score > compareScore) {
-                  beerPoints = 2;
+                  matchPoints = 2;
                 } else if (holeData.data.score === compareScore) {
-                  beerPoints = 1;
+                  matchPoints = 1;
                 }
-                totalBeerPoints += beerPoints;
+                totalMatchPoints += matchPoints;
 
                 return (
                   <ScoreContainer key={`${player.name}-${holeData.hole}`}>
-                    {beerPoints > 0 ? beerPoints : "-"}
+                    {matchPoints > 0 ? matchPoints : "-"}
                   </ScoreContainer>
                 );
               })}
-              <TotalScoreContainer>{`${totalBeerPoints}`}</TotalScoreContainer>
+              <TotalScoreContainer>{`${totalMatchPoints}`}</TotalScoreContainer>
             </PlayerSummaryContainer>
           );
         })}
@@ -130,10 +130,10 @@ const PlayerSummary = () => {
               <ConfirmButton
                 onClick={() => {
                   setSelecting(false);
-                  setType(BEER);
+                  setType(MATCH);
                 }}
               >
-                {BEER}
+                {MATCH}
               </ConfirmButton>
             </SelectContainer>
           </>
@@ -163,7 +163,7 @@ const PlayerSummary = () => {
 
             {type === POINTS && getPointsSummary()}
             {type === STROKES && getStrokesSummary()}
-            {type === BEER && getBeerSummary()}
+            {type === MATCH && getMatchSummary()}
           </>
         )}
       </SummaryContainer>
