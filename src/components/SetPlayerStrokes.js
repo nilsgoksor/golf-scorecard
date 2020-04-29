@@ -115,7 +115,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
       stop();
       setNewStrokes(null);
     }
-    if (parseInt(input) >= 0 && parseInt(input) <= 9 && input.length === 1) {
+    if (parseInt(input) >= 0 && parseInt(input) <= 19 && input.length <= 2) {
       stop();
       setNewStrokes(parseInt(input));
     }
@@ -154,6 +154,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
             type="number"
             pattern="\d*"
             min="1"
+            max="19"
             step="1"
             onChange={(e) => {
               strokeInputHandler(e.target.value);
@@ -170,7 +171,7 @@ const ScoreText = styled.input`
   cursor: pointer;
   color: ${(p) => p.theme.color.green};
   outline: 0;
-  font-size: 52px;
+  font-size: 42px;
   font-weight: bold;
   padding: 0;
   border: 0.3px solid ${(p) => p.theme.color.green};
