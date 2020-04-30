@@ -37,4 +37,5 @@ const RoundDataContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 20px 0px;
 `;

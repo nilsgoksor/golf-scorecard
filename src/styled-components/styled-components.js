@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+export const PageContainer = styled.div`
+  margin: auto;
+  width: 100%;
+  height: 80%;
+  @media (min-width: ${(p) => p.theme.width.default}) {
+    width: ${(p) => p.theme.width.default};
+  }
+`;
+
 export const PageTitle = styled.h1`
   margin-right: 15px;
   display: flex;
@@ -47,9 +56,7 @@ export const ConfirmButton = styled.button`
     cursor: pointer;
   }
 
-  @media (min-width: ${(p) => p.theme.width.default}) {
-    margin: 0px ${(p) => p.theme.margin.default};
-  }
+  margin: 0px ${(p) => p.theme.margin.default};
 `;
 
 export const SmallButton = styled(ConfirmButton)`
@@ -119,4 +126,5 @@ export const LinkText = styled.a`
   color: ${(p) => p.theme.color.white};
   text-decoration: none;
   font-size: 11px;
+  margin: ${(p) => p.theme.margin.double};
 `;

@@ -202,7 +202,6 @@ const SetPlayerStrokesContainer = styled.div`
 `;
 const InputContainer = styled.div`
   display: flex;
-  flex-direction: space-between;
-  margin: 10px 0p;
+  flex-direction: space-around;
   margin-top: 5px;
 `;

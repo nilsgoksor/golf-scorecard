@@ -77,9 +77,9 @@ const AddPlayer = () => {
             isValidHandicap(e.target.value);
           }}
         />
-        <LinkText href="https://mingolf.golf.se/Site/HCP" target="_blank">
+        <HandicapLink href="https://mingolf.golf.se/Site/HCP" target="_blank">
           Forgot your hcp?
-        </LinkText>
+        </HandicapLink>
       </InputContainer>
       <InputContainer>
         <ConfirmButton disabled={!readyToAdd}>add player</ConfirmButton>
@@ -96,5 +96,11 @@ const PlayerDetailsForm = styled.form`
 
   @media (min-width: ${(p) => p.theme.width.default}) {
     flex-direction: row;
+  }
+`;
+
+const HandicapLink = styled(LinkText)`
+  @media (min-width: ${(p) => p.theme.width.default}) {
+    margin: 0px;
   }
 `;

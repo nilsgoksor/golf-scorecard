@@ -177,7 +177,8 @@ const PlayerSummaryContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border-bottom: ${(p) => p.header && `0.3px solid ${p.theme.color.white}`};
+  border-bottom: ${(p) => p.header && `2px solid ${p.theme.color.white}`};
+  margin-bottom: ${(p) => p.header && `15px`};
   padding: 2px 2px;
 `;
 
@@ -211,13 +212,13 @@ const ScoreContainer = styled.div`
 const SummaryContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 2px solid white;
-  padding: ${(p) => p.theme.padding.defaul};
+  border: ${(p) => `2px solid ${p.theme.color.white}`};
+  padding: ${(p) => p.theme.padding.default};
 `;
 
 const SelectContainer = styled.div`
   display: flex;
   flex-direction: row;
-  padding: ${(p) => p.theme.padding.defaul};
+  justify-content: center;
+  padding: ${(p) => p.theme.padding.default};
 `;

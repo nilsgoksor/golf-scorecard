@@ -6,6 +6,7 @@ import {
   PlayerContainer,
   PlayerNameText,
   LinkText,
+  PageContainer,
 } from "../styled-components/styled-components";
 import GolfIcon from "../components/GolfIcon";
 import { useStateValue } from "../state/stateprovider";
@@ -38,7 +39,7 @@ const RoundCompletedPage = ({ history }) => {
   }, [players]);
 
   return (
-    <RoundCompletedPageContainer>
+    <PageContainer>
       <TitleContainer>
         <PageTitle>round completed</PageTitle>
         <GolfIcon />
@@ -73,7 +74,7 @@ const RoundCompletedPage = ({ history }) => {
           new round
         </ConfirmButton>
       </ActionContainer>
-    </RoundCompletedPageContainer>
+    </PageContainer>
   );
 };
 
@@ -83,20 +84,13 @@ const PlayerSummaryContainer = styled(PlayerContainer)`
   display: flex;
   justify-content: center;
   background-color: ${(p) => p.golden && "#FBEC49"};
+  margin-bottom: ${(p) => p.theme.margin.large};
 `;
 const ActionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-`;
-
-const RoundCompletedPageContainer = styled.div`
-  width: 100%;
-  margin: auto;
-  @media (min-width: ${(p) => p.theme.width.default}) {
-    width: ${(p) => p.theme.width.default};
-  }
 `;
 
 const WinnerSummaryContainer = styled.div`
