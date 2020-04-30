@@ -29,7 +29,10 @@ const RoundData = ({ history }) => {
 
 export default RoundData;
 
-const RoundDataContainer = styled.div``;
+const RoundDataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const ButtonContainer = styled.div`
   display: flex;

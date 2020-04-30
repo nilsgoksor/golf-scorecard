@@ -64,9 +64,9 @@ const EditPlayerStatsContainer = styled(PlayerContainer)`
     cursor: ${(p) => !p.selected && "pointer"};
     border: ${(p) => !p.selected && "3px soid yellow"};
   }
-  width: ${(p) => p.selected && "200px"};
-  height: ${(p) => p.selected && "200px"};
-  padding: ${(p) => p.selected && "10px"};
+  width: ${(p) => p.selected && "175px"};
+  height: ${(p) => p.selected && "175px"};
+  padding: ${(p) => p.selected && "5px"};
   transition: all 1s;
 `;
 

@@ -93,7 +93,7 @@ export const PlayerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 15px;
+  margin: 5px;
   width: 75px;
   height: 75px;
   padding: 3px;

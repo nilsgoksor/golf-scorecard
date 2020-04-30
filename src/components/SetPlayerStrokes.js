@@ -163,27 +163,22 @@ const ScoreText = styled.input`
   color: ${(p) => p.theme.color.green};
   outline: 0;
   font-size: 42px;
-  font-weight: bold;
-  padding: 0;
   border: 0.3px solid ${(p) => p.theme.color.green};
-
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  padding: 0px 10px;
+  padding-left: 10px;
 `;
 
 const VoiceEditor = styled.div`
   color: ${(p) => p.theme.color.white};
   background-color: ${(p) => p.theme.color.green};
   cursor: pointer;
-  border-radius: 50%;
   border: ${(p) =>
     p.listening ? `3px solid ${p.theme.color.green}` : `3px solid transparent`};
   animation: ${(p) => p.listening && `border-pulsate 1s infinite`};
   box-sizing: padding-box;
-  margin: 5px;
-  padding: 15px;
+  padding: 10px;
 
   @keyframes border-pulsate {
     0% {
@@ -208,5 +203,6 @@ const SetPlayerStrokesContainer = styled.div`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: space-between;
+  margin: 10px 0p;
   margin-top: 5px;
 `;
