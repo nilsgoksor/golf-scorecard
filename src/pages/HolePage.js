@@ -1,9 +1,9 @@
 import React from "react";
 import { useStateValue } from "../state/stateprovider";
-import HoleSwitcher from "./HoleSwitcher";
-import RoundData from "./RoundData";
+import HoleSwitcher from "../components/HoleSwitcher";
+import RoundData from "../components/RoundData";
 import styled from "styled-components";
-import HoleData from "./HoleData";
+import HoleData from "../components/HoleData";
 
 const HolePage = ({ history }) => {
   // eslint-disable-next-line no-unused-vars

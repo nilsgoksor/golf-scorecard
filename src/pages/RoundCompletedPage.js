@@ -7,11 +7,11 @@ import {
   PlayerNameText,
   LinkText,
 } from "../styled-components/styled-components";
-import GolfIcon from "./GolfIcon";
+import GolfIcon from "../components/GolfIcon";
 import { useStateValue } from "../state/stateprovider";
 import { RESET_ROUND_DATA } from "../state/actionTypes";
 import styled from "styled-components";
-import PlayerSummary from "./PlayerSummary";
+import PlayerSummary from "../components/PlayerSummary";
 
 const RoundCompletedPage = ({ history }) => {
   const [{ players }, dispatch] = useStateValue();

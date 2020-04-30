@@ -3,7 +3,7 @@ import {
   TitleContainer,
   PageTitle,
 } from "../styled-components/styled-components";
-import GolfIcon from "./GolfIcon";
+import GolfIcon from "../components/GolfIcon";
 import styled from "styled-components";
 
 const NotFoundPage = () => {

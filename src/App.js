@@ -3,10 +3,10 @@ import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { ThemeProvider } from "styled-components";
 import theme from "./styled-components/theme";
-import StartPage from "./components/StartPage";
-import HolePage from "./components/HolePage";
-import RoundCompletedPage from "./components/RoundCompletedPage";
-import NotFoundPage from "./components/NotFoundPage";
+import StartPage from "./pages/StartPage";
+import HolePage from "./pages/HolePage";
+import RoundCompletedPage from "./pages/RoundCompletedPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import { StateProvider } from "./state/stateprovider";
 import { reducer } from "./state/reducer";
 function App() {
