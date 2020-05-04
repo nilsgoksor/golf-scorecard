@@ -25,7 +25,7 @@ function App() {
                 exact
                 component={RoundCompletedPage}
               ></Route>
-              <Route component={NotFoundPage}></Route>
+              <Route path="*" component={NotFoundPage}></Route>
             </Switch>
           </Router>
         </StateProvider>
