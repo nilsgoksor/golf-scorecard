@@ -142,7 +142,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
           </VoiceEditor>
           <ScoreText
             value={newStrokes || ""}
-            type="text"
+            type="number"
             inputmode="decimal"
             min="1"
             max="19"

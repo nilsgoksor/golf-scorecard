@@ -68,7 +68,7 @@ const AddPlayer = () => {
         <UserInput
           placeholder="hcp"
           value={hcp}
-          type="text"
+          type="number"
           inputmode="decimal"
           min="0"
           max="36"
