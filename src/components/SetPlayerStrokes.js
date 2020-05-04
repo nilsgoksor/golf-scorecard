@@ -143,7 +143,8 @@ const SetPlayerStrokes = ({ player, holeData }) => {
           <ScoreText
             value={newStrokes || ""}
             type="number"
-            inputmode="decimal"
+            pattern="/^[0-9.,]+$/"
+            inputMode="decimal"
             min="1"
             max="19"
             step="1"

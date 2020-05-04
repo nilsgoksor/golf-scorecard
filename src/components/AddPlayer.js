@@ -69,10 +69,9 @@ const AddPlayer = () => {
           placeholder="hcp"
           value={hcp}
           type="number"
-          inputmode="decimal"
-          min="0"
-          max="36"
+          pattern="/^[0-9.,]+$/"
           step="0.1"
+          inputMode="decimal"
           onChange={(e) => {
             isValidHandicap(e.target.value);
           }}
