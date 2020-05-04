@@ -38,10 +38,10 @@ const AddPlayer = () => {
     }
     if (handicap.length <= 3 && parseInt(handicap) <= 36) {
       setHcp(handicap);
+    } else if (handicap.length <= 2 && parseInt(handicap) <= 99) {
+      setHcp(handicap / 10);
     } else if (handicap.length <= 3 && parseInt(handicap) >= 100) {
       setHcp(handicap / 10);
-    } else if (handicap.length === 4 && handicap.includes(".")) {
-      setHcp(handicap);
     }
   };
 
@@ -68,8 +68,8 @@ const AddPlayer = () => {
         <UserInput
           placeholder="hcp"
           value={hcp}
-          type="number"
-          pattern="\d*"
+          type="text"
+          inputmode="decimal"
           min="0"
           max="36"
           step="0.1"

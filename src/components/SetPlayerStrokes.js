@@ -142,8 +142,8 @@ const SetPlayerStrokes = ({ player, holeData }) => {
           </VoiceEditor>
           <ScoreText
             value={newStrokes || ""}
-            type="number"
-            pattern="\d*"
+            type="text"
+            inputmode="decimal"
             min="1"
             max="19"
             step="1"
@@ -163,6 +163,7 @@ const ScoreText = styled.input`
   color: ${(p) => p.theme.color.green};
   outline: 0;
   font-size: 42px;
+  width: 75px;
   border: 0.3px solid ${(p) => p.theme.color.green};
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
