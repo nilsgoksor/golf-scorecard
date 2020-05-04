@@ -44,36 +44,38 @@ const RoundCompletedPage = ({ history }) => {
         <PageTitle>round completed</PageTitle>
         <GolfIcon />
       </TitleContainer>
-      <WinnerSummaryContainer>
-        {table &&
-          table.map((pos) => {
-            return (
-              <PlayerSummaryContainer golden={winners.includes(pos.name)}>
-                <PlayerNameText>{`${pos.totalScore} p`}</PlayerNameText>
-                <PlayerNameText>{pos.name}</PlayerNameText>
-              </PlayerSummaryContainer>
-            );
-          })}
+      <ContentContainer>
+        <WinnerSummaryContainer>
+          {table &&
+            table.map((pos) => {
+              return (
+                <PlayerSummaryContainer golden={winners.includes(pos.name)}>
+                  <PlayerNameText>{`${pos.totalScore} p`}</PlayerNameText>
+                  <PlayerNameText>{pos.name}</PlayerNameText>
+                </PlayerSummaryContainer>
+              );
+            })}
+        </WinnerSummaryContainer>
         <PlayerSummary />
-      </WinnerSummaryContainer>
-      <ActionContainer>
-        <LinkText
-          href="https://mingolf.golf.se/Site/HCP/Adjustment"
-          target="_blank"
-        >
-          Click here to register your round
-        </LinkText>
-        <ConfirmButton
-          onClick={() => {
-            history.push(`/`);
-            dispatch({
-              type: RESET_ROUND_DATA,
-            });
-          }}
-        >
-          new round
-        </ConfirmButton>
-      </ActionContainer>
+        <ActionContainer>
+          <LinkText
+            href="https://mingolf.golf.se/Site/HCP/Adjustment"
+            target="_blank"
+          >
+            Click here to register your round
+          </LinkText>
+          <ConfirmButton
+            onClick={() => {
+              history.push(`/`);
+              dispatch({
+                type: RESET_ROUND_DATA,
+              });
+            }}
+          >
+            new round
+          </ConfirmButton>
+        </ActionContainer>
+      </ContentContainer>
     </PageContainer>
   );
 };
@@ -104,4 +106,11 @@ const WinnerSummaryContainer = styled.div`
     flex-direction: row;
     width: ${(p) => p.theme.width.default};
   }
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `;
