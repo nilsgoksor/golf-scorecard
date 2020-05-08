@@ -10,14 +10,18 @@ import {
 } from "../styled-components/styled-components";
 
 const AddPlayer = () => {
-  const { dispatch } = useContextState();
-
+  const { state, dispatch } = useContextState();
+  const { players } = state;
   const [readyToAdd, setReadyToAdd] = useState(false);
+  const [nameExistError, setNameExistError] = useState(false);
   const [name, setName] = useState("");
   const [hcp, setHcp] = useState("");
 
   useEffect(() => {
-    setReadyToAdd(name && hcp);
+    const nameExist = players.findIndex((p) => p.name === name) !== -1;
+    setNameExistError(nameExist);
+    setReadyToAdd(name && hcp && !nameExist);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, hcp]);
 
   const addPlayerhandler = () => {
@@ -62,6 +66,9 @@ const AddPlayer = () => {
             setName(e.target.value);
           }}
         />
+        <NameExistError>
+          {nameExistError && "name already added"}
+        </NameExistError>
       </InputContainer>
       <InputContainer>
         <UserInput
@@ -98,6 +105,15 @@ const PlayerDetailsForm = styled.form`
 `;
 
 const HandicapLink = styled(LinkText)`
+  @media (min-width: ${(p) => p.theme.width.default}) {
+    margin: 0px;
+  }
+`;
+const NameExistError = styled.p`
+  color: ${(p) => p.theme.color.white};
+  text-decoration: none;
+  font-size: 11px;
+  margin: ${(p) => p.theme.margin.double};
   @media (min-width: ${(p) => p.theme.width.default}) {
     margin: 0px;
   }
