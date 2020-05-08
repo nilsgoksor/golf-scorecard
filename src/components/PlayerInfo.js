@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { REMOVE_PLAYER } from "../state/actionTypes";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { useStateValue } from "../state/stateprovider";
+import { useContextState } from "../state/stateprovider";
 import {
   PlayerContainer,
   PlayerNameText,
@@ -10,8 +10,8 @@ import {
 } from "../styled-components/styled-components";
 
 const PlayerInfo = ({ player }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [{ players }, dispatch] = useStateValue();
+  const { dispatch } = useContextState();
+
   const [hover, setHover] = useState(false);
 
   return (

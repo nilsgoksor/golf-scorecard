@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AddPlayer from "./AddPlayer";
 import PlayerInfo from "./PlayerInfo";
-import { useStateValue } from "../state/stateprovider";
+import { useContextState } from "../state/stateprovider";
 import styled from "styled-components";
 import { SET_HOLE, SET_COURSE } from "../state/actionTypes";
 import {
@@ -11,7 +11,8 @@ import {
 import { värpingeGK, värpingeGKhcpData } from "../state/reducer";
 
 const PreGameSettings = ({ history }) => {
-  const [{ players }, dispatch] = useStateValue();
+  const { state, dispatch } = useContextState();
+  const { players } = state;
 
   useEffect(() => {
     dispatch({

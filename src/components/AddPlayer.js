@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ADD_PLAYER } from "../state/actionTypes";
-import { useStateValue } from "../state/stateprovider";
+import { useContextState } from "../state/stateprovider";
 import {
   ConfirmButton,
   UserInput,
@@ -10,8 +10,7 @@ import {
 } from "../styled-components/styled-components";
 
 const AddPlayer = () => {
-  // eslint-disable-next-line no-empty-pattern
-  const [{}, dispatch] = useStateValue();
+  const { dispatch } = useContextState();
 
   const [readyToAdd, setReadyToAdd] = useState(false);
   const [name, setName] = useState("");

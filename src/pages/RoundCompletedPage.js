@@ -9,13 +9,14 @@ import {
   PageContainer,
 } from "../styled-components/styled-components";
 import GolfIcon from "../components/GolfIcon";
-import { useStateValue } from "../state/stateprovider";
+import { useContextState } from "../state/stateprovider";
 import { RESET_ROUND_DATA } from "../state/actionTypes";
 import styled from "styled-components";
 import PlayerSummary from "../components/PlayerSummary";
 
 const RoundCompletedPage = ({ history }) => {
-  const [{ players }, dispatch] = useStateValue();
+  const { state, dispatch } = useContextState();
+  const { players } = state;
   const [table, setTable] = useState(null);
   const [winners, setWinners] = useState([]);
 

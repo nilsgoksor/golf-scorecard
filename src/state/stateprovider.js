@@ -12,17 +12,22 @@ export const StateProvider = ({ reducer, children }) => {
 
   const localState = JSON.parse(localStorage.getItem("state"));
 
-  const [state, setState] = useReducer(reducer, localState || initialState);
+  const [contextState, contextDispatch] = useReducer(
+    reducer,
+    localState || initialState
+  );
+  const state = contextState;
+  const dispatch = contextDispatch;
 
   useEffect(() => {
     localStorage.setItem("state", JSON.stringify(state));
   }, [state]);
 
   return (
-    <StateContext.Provider value={[state, setState]}>
+    <StateContext.Provider value={{ state, dispatch }}>
       {children}
     </StateContext.Provider>
   );
 };
 
-export const useStateValue = () => useContext(StateContext);
+export const useContextState = () => useContext(StateContext);

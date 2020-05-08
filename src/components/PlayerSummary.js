@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useStateValue } from "../state/stateprovider";
+import { useContextState } from "../state/stateprovider";
 import { STROKES, POINTS, MATCH } from "../constans/summary-constants";
 import {
   SmallButton,
@@ -10,8 +10,8 @@ import {
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 
 const PlayerSummary = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [{ players, course }, dispatch] = useStateValue();
+  const { state } = useContextState();
+  const { players, course } = state;
 
   const [type, setType] = useState(POINTS);
   const [selecting, setSelecting] = useState(false);

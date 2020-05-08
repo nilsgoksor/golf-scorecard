@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SET_HOLE } from "../state/actionTypes";
-import { useStateValue } from "../state/stateprovider";
+import { useContextState } from "../state/stateprovider";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import styled from "styled-components";
@@ -10,7 +10,9 @@ import {
 } from "../styled-components/styled-components";
 
 const HoleSwitcher = ({ holeData }) => {
-  const [{ hole }, dispatch] = useStateValue();
+  const { state, dispatch } = useContextState();
+  const { hole } = state;
+
   const [nextHole, setNextHole] = useState(hole);
 
   const changeHole = (input) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useStateValue } from "../state/stateprovider";
+import { useContextState } from "../state/stateprovider";
 import HoleSwitcher from "../components/HoleSwitcher";
 import RoundData from "../components/RoundData";
 import styled from "styled-components";
@@ -7,8 +7,8 @@ import HoleData from "../components/HoleData";
 import { PageContainer } from "../styled-components/styled-components";
 
 const HolePage = ({ history }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [{ hole, course, players }, dispatch] = useStateValue();
+  const { state } = useContextState();
+  const { hole, course, players } = state;
 
   if (!players || players.length === 0) {
     history.push(`/`);

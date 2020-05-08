@@ -4,15 +4,14 @@ import {
   PlayerNameText,
   PlayerHcpText,
 } from "../styled-components/styled-components";
-import { useStateValue } from "../state/stateprovider";
+import { useContextState } from "../state/stateprovider";
 import { SET_PLAYER_STROKES } from "../state/actionTypes";
 import MicIcon from "@material-ui/icons/Mic";
 import { useSpeechRecognition, useSpeechSynthesis } from "react-speech-kit";
 import * as voiceInputs from "../constans/voice-inputs";
 
 const SetPlayerStrokes = ({ player, holeData }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [{ players }, dispatch] = useStateValue();
+  const { dispatch } = useContextState();
 
   const [result, setResult] = useState();
   const { listen, listening, stop } = useSpeechRecognition({
