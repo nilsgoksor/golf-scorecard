@@ -5,7 +5,6 @@ import { STROKES, POINTS, MATCH } from "../constans/summary-constants";
 import {
   SmallButton,
   ConfirmButton,
-  MediumHeading,
 } from "../styled-components/styled-components";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 
@@ -14,7 +13,6 @@ const PlayerSummary = () => {
   const { players, course } = state;
 
   const [type, setType] = useState(POINTS);
-  const [selecting, setSelecting] = useState(false);
 
   const getPointsSummary = () => {
     return (
@@ -105,69 +103,54 @@ const PlayerSummary = () => {
     );
   };
   return (
-    <>
-      <SummaryContainer>
-        {selecting ? (
-          <>
-            <MediumHeading>Select mode</MediumHeading>
-            <SelectContainer>
-              <ConfirmButton
-                onClick={() => {
-                  setSelecting(false);
-                  setType(POINTS);
-                }}
-              >
-                {POINTS}
-              </ConfirmButton>
-              <ConfirmButton
-                onClick={() => {
-                  setSelecting(false);
-                  setType(STROKES);
-                }}
-              >
-                {STROKES}
-              </ConfirmButton>
-              <ConfirmButton
-                onClick={() => {
-                  setSelecting(false);
-                  setType(MATCH);
-                }}
-              >
-                {MATCH}
-              </ConfirmButton>
-            </SelectContainer>
-          </>
-        ) : (
-          <>
-            <PlayerSummaryContainer header={true}>
-              <NameContainer>
-                <SmallButton
-                  onClick={() => {
-                    setSelecting(!selecting);
-                  }}
-                >
-                  {type}
-                </SmallButton>
-              </NameContainer>
-              {course.map((holeData) => {
-                return (
-                  <ScoreContainer key={holeData.hole} header={true}>
-                    {holeData.hole}
-                  </ScoreContainer>
-                );
-              })}
-              <TotalScoreContainer>
-                <EqualizerIcon></EqualizerIcon>
-              </TotalScoreContainer>
-            </PlayerSummaryContainer>
-
-            {type === POINTS && getPointsSummary()}
-            {type === STROKES && getStrokesSummary()}
-            {type === MATCH && getMatchSummary()}
-          </>
-        )}
-      </SummaryContainer>
-    </>
+    <SummaryContainer>
+      <>
+        <PlayerSummaryContainer>
+          <SelectContainer>
+            <ConfirmButton
+              onClick={() => {
+                setType(STROKES);
+              }}
+              selected={type === STROKES}
+            >
+              {STROKES}
+            </ConfirmButton>
+            <ConfirmButton
+              onClick={() => {
+                setType(POINTS);
+              }}
+              selected={type === POINTS}
+            >
+              {POINTS}
+            </ConfirmButton>
+            <ConfirmButton
+              onClick={() => {
+                setType(MATCH);
+              }}
+              selected={type === MATCH}
+            >
+              {MATCH}
+            </ConfirmButton>
+          </SelectContainer>
+        </PlayerSummaryContainer>
+        <PlayerSummaryContainer header={true}>
+          <NameContainer>name</NameContainer>
+          {course.map((holeData) => {
+            return (
+              <ScoreContainer key={holeData.hole} header={true}>
+                {holeData.hole}
+              </ScoreContainer>
+            );
+          })}
+          <TotalScoreContainer>
+            <EqualizerIcon></EqualizerIcon>
+          </TotalScoreContainer>
+        </PlayerSummaryContainer>
+        {type === POINTS && getPointsSummary()}
+        {type === STROKES && getStrokesSummary()}
+        {type === MATCH && getMatchSummary()}
+      </>
+    </SummaryContainer>
   );
 };
 

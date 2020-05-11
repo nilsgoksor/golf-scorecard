@@ -53,7 +53,6 @@ const SetPlayerStrokes = ({ player, holeData }) => {
     if (roundData) {
       setNewStrokes(roundData.data.strokes);
     }
-    inputScoreRef.current.focus();
   }, [holeData, player.roundData]);
 
   useEffect(() => {
@@ -126,6 +125,10 @@ const SetPlayerStrokes = ({ player, holeData }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newStrokes]);
 
+  useEffect(() => {
+    inputScoreRef.current.focus();
+  }, []);
+
   return (
     <SetPlayerStrokesContainer>
       <PlayerNameText>{player.name}</PlayerNameText>
@@ -142,6 +145,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
           </VoiceEditor>
           <ScoreText
             ref={inputScoreRef}
+            autoFocus
             value={newStrokes || ""}
             type="number"
             pattern="/^[0-9.,]+$/"
@@ -182,7 +186,6 @@ const VoiceEditor = styled.div`
   animation: ${(p) => p.listening && `border-pulsate 1s infinite`};
   box-sizing: padding-box;
   padding: 10px;
-
   opacity: ${(p) => (p.disabled ? 0.2 : 1)};
 
   @keyframes border-pulsate {

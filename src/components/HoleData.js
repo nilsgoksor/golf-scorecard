@@ -66,8 +66,7 @@ const EditPlayerStatsContainer = styled(PlayerContainer)`
   }
   width: ${(p) => p.selected && "175px"};
   height: ${(p) => p.selected && "175px"};
-  padding: ${(p) => p.selected && "10px"};
-  box-shadow: ${(p) => p.selected && "none"};
+  padding: ${(p) => p.selected && "20px"};
   transition: all 0.3s;
 `;
 

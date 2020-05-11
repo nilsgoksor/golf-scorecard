@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const PageContainer = styled.div`
   margin: auto;
-  width: 100%;
-  height: 80%;
+  width: 95%;
+  height: 88%;
   @media (min-width: ${(p) => p.theme.width.default}) {
     width: ${(p) => p.theme.width.default};
   }
@@ -37,10 +37,13 @@ export const ConfirmButton = styled.button`
   min-width: ${(p) => p.theme.input.buttonWidth};
   height: ${(p) => p.theme.input.buttonHeight};
   margin: ${(p) => p.theme.margin.large} 0px;
-  color: ${(p) => p.theme.color.white};
-  background-color: transparent;
+  color: ${(p) => (p.selected ? p.theme.color.green : p.theme.color.white)};
+  background-color: ${(p) =>
+    p.selected ? p.theme.color.white : "transparent"};
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   border: 0.16em solid ${(p) => p.theme.color.white};
+  box-shadow: ${(p) => p.selected && "0px 15px 20px rgba(46, 229, 157, 0.4)"};
+  transform: ${(p) => p.selected && "translateY(-1px)"};
   text-align: center;
   transition: all 0.15s;
 
