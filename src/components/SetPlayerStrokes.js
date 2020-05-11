@@ -18,17 +18,30 @@ const SetPlayerStrokes = ({ player, holeData }) => {
     onResult: (result) => setResult(result),
   });
 
-  const setListening = (listenStatus) => {
-    const isChrome = !!window.chrome;
-    if (!isChrome) {
-      return;
-    }
-    if (!listenStatus) {
-      listen();
+  const [isListening, setIsListening] = useState(false);
+  const [listeningDisabled, setIsListeningDisabled] = useState(!window.chrome);
+
+  const tryToListen = () => {
+    if (!listening) {
+      try {
+        listen();
+        setIsListening(true);
+      } catch (error) {
+        setIsListening(false);
+        console.error(error);
+      }
     } else {
-      stop();
+      try {
+        stop();
+        setIsListening(false);
+      } catch (error) {
+        setIsListening(false);
+        console.error(error);
+      }
     }
   };
+
+  const { speak } = useSpeechSynthesis();
 
   const [newStrokes, setNewStrokes] = useState(null);
 
@@ -64,66 +77,50 @@ const SetPlayerStrokes = ({ player, holeData }) => {
     }
     if (validInput) {
       stop();
+      setIsListening(false);
       setNewStrokes(validInput);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [result]);
 
-  const [readyToSpeak, setReadyToSpeak] = useState(false);
-  const { speak } = useSpeechSynthesis();
-
-  useEffect(() => {
-    if (readyToSpeak) {
-      speakNewResult(newStrokes);
+      speak({ text: result || "none" });
+      if (result === 1) {
+        speak({ text: "hole in one!" });
+        speak({ text: `congratulations, ${player.name}` });
+      } else if (result === holeData.par - 3) {
+        speak({ text: "albatros!" });
+        speak({ text: `brilliant, ${player.name}` });
+      } else if (result === holeData.par - 2) {
+        speak({ text: "eagle!" });
+        speak({ text: `splendid, ${player.name}` });
+      } else if (result === holeData.par - 1) {
+        speak({ text: "birdie!" });
+        speak({ text: `well done, ${player.name}` });
+      } else if (result === holeData.par) {
+        speak({ text: "par!" });
+      } else if (result > holeData.par + 3) {
+        speak({ text: `you suck, ${player.name}` });
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [readyToSpeak]);
-
-  const speakNewResult = (result) => {
-    speak({ text: result || "none" });
-    if (result === 1) {
-      speak({ text: "hole in one!" });
-      speak({ text: `congratulations, ${player.name}` });
-    } else if (result === holeData.par - 3) {
-      speak({ text: "albatros!" });
-      speak({ text: `brilliant, ${player.name}` });
-    } else if (result === holeData.par - 2) {
-      speak({ text: "eagle!" });
-      speak({ text: `splendid, ${player.name}` });
-    } else if (result === holeData.par - 1) {
-      speak({ text: "birdie!" });
-      speak({ text: `well done, ${player.name}` });
-    } else if (result === holeData.par) {
-      speak({ text: "par!" });
-    } else if (result > holeData.par + 3) {
-      speak({ text: `you suck, ${player.name}` });
-    }
-  };
+  }, [holeData.par, player.name, result, speak, stop]);
 
   const strokeInputHandler = (input) => {
     if (isNaN(input) || input === "") {
       stop();
+      setIsListening(false);
       setNewStrokes(null);
     }
     if (parseInt(input) >= 0 && parseInt(input) <= 19 && input.length <= 2) {
       stop();
+      setIsListening(false);
       setNewStrokes(parseInt(input));
     }
   };
 
   useEffect(() => {
-    setReadyToSpeak(false);
-    setTimeout(() => {
-      setReadyToSpeak(true);
-    }, 2000);
-
     dispatch({
       type: SET_PLAYER_STROKES,
       strokes: newStrokes,
       holeData: holeData,
       player: player,
     });
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newStrokes]);
 
@@ -134,9 +131,11 @@ const SetPlayerStrokes = ({ player, holeData }) => {
       <InputContainer>
         <>
           <VoiceEditor
-            onClick={() => setListening(listening)}
-            listening={listening}
+            onClick={() => !listeningDisabled && tryToListen()}
+            listening={isListening}
+            disabled={listeningDisabled}
           >
+            <ToolTip disabled={listeningDisabled}>disabled</ToolTip>
             <MicIcon style={{ fontSize: 40 }} />
           </VoiceEditor>
           <ScoreText
@@ -181,6 +180,8 @@ const VoiceEditor = styled.div`
   box-sizing: padding-box;
   padding: 10px;
 
+  opacity: ${(p) => (p.disabled ? 0.2 : 1)};
+
   @keyframes border-pulsate {
     0% {
       background-color: ${(p) => p.theme.color.green};
@@ -205,4 +206,9 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: space-around;
   margin-top: 5px;
+`;
+
+const ToolTip = styled.div`
+  font-size: 10px;
+  display: ${(p) => (!p.disabled ? "none" : "block")};
 `;
