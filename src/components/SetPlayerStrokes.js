@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import {
   PlayerNameText,
@@ -20,6 +20,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
 
   const [isListening, setIsListening] = useState(false);
   const [listeningDisabled, setIsListeningDisabled] = useState(!window.chrome);
+  const inputScoreRef = useRef(null);
 
   const tryToListen = () => {
     if (!listening) {
@@ -52,6 +53,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
     if (roundData) {
       setNewStrokes(roundData.data.strokes);
     }
+    inputScoreRef.current.focus();
   }, [holeData, player.roundData]);
 
   useEffect(() => {
@@ -139,6 +141,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
             <MicIcon style={{ fontSize: 40 }} />
           </VoiceEditor>
           <ScoreText
+            ref={inputScoreRef}
             value={newStrokes || ""}
             type="number"
             pattern="/^[0-9.,]+$/"

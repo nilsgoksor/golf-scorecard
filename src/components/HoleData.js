@@ -68,7 +68,7 @@ const EditPlayerStatsContainer = styled(PlayerContainer)`
   height: ${(p) => p.selected && "175px"};
   padding: ${(p) => p.selected && "10px"};
   box-shadow: ${(p) => p.selected && "none"};
-  transition: all 1s;
+  transition: all 0.3s;
 `;
 
 const PlayersContainer = styled.div`
