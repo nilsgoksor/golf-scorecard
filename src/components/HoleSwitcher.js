@@ -85,7 +85,7 @@ const HoleInfoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  margin-bottom: 10px;
   width: ${(p) => p.theme.width.small};
 `;
 
@@ -94,7 +94,6 @@ const HoleNameContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10px;
   width: ${(p) => p.theme.width.small};
 `;
 
@@ -102,6 +101,11 @@ const ArrowContainer = styled.div`
   cursor: pointer;
   visibility: visible;
   visibility: ${(p) => p.hide && "hidden"};
+  border: 0.16em solid ${(p) => p.theme.color.white};
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  color: ${(p) => p.theme.color.white};
+  padding: 10px;
+  border-radius: 50%;
 `;
 
 const HoleText = styled.input`
