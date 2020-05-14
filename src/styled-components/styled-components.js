@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PageContainer = styled.div`
   margin: auto;
   width: 95%;
-  height: 83%;
+  height: 86%;
   @media (min-width: ${(p) => p.theme.width.default}) {
     width: ${(p) => p.theme.width.default};
   }
