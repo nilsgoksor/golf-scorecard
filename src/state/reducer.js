@@ -1,5 +1,12 @@
 import * as actionTypes from "./actionTypes";
 
+export const initialState = {
+  players: [],
+  hole: 1,
+  course: [],
+  hcpData: [],
+};
+
 export const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.ADD_PLAYER:

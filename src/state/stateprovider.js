@@ -1,15 +1,9 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
+import { initialState, reducer } from "./reducer";
 
 export const StateContext = createContext();
 
-export const StateProvider = ({ reducer, children }) => {
-  const initialState = {
-    players: [],
-    hole: 1,
-    course: [],
-    hcpData: [],
-  };
-
+export const StateProvider = ({ children }) => {
   const localState = JSON.parse(localStorage.getItem("state"));
 
   const [contextState, contextDispatch] = useReducer(

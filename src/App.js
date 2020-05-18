@@ -8,14 +8,14 @@ import HolePage from "./pages/HolePage";
 import RoundCompletedPage from "./pages/RoundCompletedPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { StateProvider } from "./state/stateprovider";
-import { reducer } from "./state/reducer";
-function App() {
+
+const App = () => {
   const history = createBrowserHistory();
 
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-        <StateProvider reducer={reducer}>
+        <StateProvider>
           <Router history={history}>
             <Switch>
               <Route path="/" exact component={StartPage}></Route>
@@ -32,6 +32,6 @@ function App() {
       </ThemeProvider>
     </React.Fragment>
   );
-}
+};
 
 export default App;

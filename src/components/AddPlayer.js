@@ -18,7 +18,8 @@ const AddPlayer = () => {
   const [hcp, setHcp] = useState("");
 
   useEffect(() => {
-    const nameExist = players.findIndex((p) => p.name === name) !== -1;
+    const nameExist =
+      players && players.findIndex((p) => p.name === name) !== -1;
     setNameExistError(nameExist);
     setReadyToAdd(name && hcp && !nameExist);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -25,7 +25,7 @@ const PreGameSettings = ({ history }) => {
   return (
     <GameSettingsContainer>
       <AddPlayer />
-      {players.length > 0 && (
+      {players && players.length > 0 && (
         <>
           <SmallHeading>{players.length}-ball with</SmallHeading>
           <PlayersContainer>

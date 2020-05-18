@@ -77,7 +77,7 @@ export default HoleSwitcher;
 const HoleSwitcherContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 const HoleInfoContainer = styled.div`

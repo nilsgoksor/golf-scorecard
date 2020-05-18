@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useContextState } from "../state/stateprovider";
 import { STROKES, POINTS, MATCH } from "../constans/summary-constants";
-import {
-  SmallButton,
-  ConfirmButton,
-} from "../styled-components/styled-components";
+import { ConfirmButton } from "../styled-components/styled-components";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 
 const PlayerSummary = () => {
@@ -201,7 +198,7 @@ const SummaryContainer = styled.div`
 
 const SelectContainer = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
-  justify-content: center;
-  padding: ${(p) => p.theme.padding.default};
+  justify-content: space-around;
 `;

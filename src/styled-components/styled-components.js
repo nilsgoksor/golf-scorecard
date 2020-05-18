@@ -35,8 +35,7 @@ export const TitleContainer = styled.div`
 
 export const ConfirmButton = styled.button`
   min-width: ${(p) => p.theme.input.buttonWidth};
-  height: ${(p) => p.theme.input.buttonHeight};
-  margin: ${(p) => p.theme.margin.large} 0px;
+  min-height: ${(p) => p.theme.input.buttonHeight};
   color: ${(p) => (p.selected ? p.theme.color.green : p.theme.color.white)};
   background-color: ${(p) =>
     p.selected ? p.theme.color.white : "transparent"};
@@ -58,15 +57,6 @@ export const ConfirmButton = styled.button`
     transform: translateY(-1px);
     cursor: pointer;
   }
-
-  margin: 0px ${(p) => p.theme.margin.default};
-`;
-
-export const SmallButton = styled(ConfirmButton)`
-  min-width: 0px;
-  width: 75px;
-  height: 25px;
-  margin: 0;
 `;
 
 export const InputContainer = styled.div`
