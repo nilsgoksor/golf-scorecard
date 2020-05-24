@@ -68,24 +68,25 @@ const PlayerSummary = () => {
             <PlayerSummaryContainer key={player.name}>
               <NameContainer>{`${player.name}`}</NameContainer>
               {player.roundData.map((holeData) => {
-                let compareScore = 1;
+                let compareScore = 0;
                 players.map((p) => {
-                  if (p.name !== player.name) {
-                    if (
-                      p.roundData[holeData.hole - 1].data.score > compareScore
-                    )
-                      compareScore = p.roundData[holeData.hole - 1].data.score;
+                  if (
+                    p.name !== player.name &&
+                    p.roundData[holeData.hole - 1].data.score > compareScore
+                  ) {
+                    compareScore = p.roundData[holeData.hole - 1].data.score;
                   }
-                  return null;
                 });
                 let matchPoints = 0;
                 if (holeData.data.score > compareScore) {
                   matchPoints = 2;
-                } else if (holeData.data.score === compareScore) {
+                } else if (
+                  holeData.data.score === compareScore &&
+                  holeData.data.score > 0
+                ) {
                   matchPoints = 1;
                 }
                 totalMatchPoints += matchPoints;
-
                 return (
                   <ScoreContainer key={`${player.name}-${holeData.hole}`}>
                     {matchPoints > 0 ? matchPoints : "-"}
@@ -101,52 +102,50 @@ const PlayerSummary = () => {
   };
   return (
     <SummaryContainer>
-      <>
-        <PlayerSummaryContainer>
-          <SelectContainer>
-            <ConfirmButton
-              onClick={() => {
-                setType(STROKES);
-              }}
-              selected={type === STROKES}
-            >
-              {STROKES}
-            </ConfirmButton>
-            <ConfirmButton
-              onClick={() => {
-                setType(POINTS);
-              }}
-              selected={type === POINTS}
-            >
-              {POINTS}
-            </ConfirmButton>
-            <ConfirmButton
-              onClick={() => {
-                setType(MATCH);
-              }}
-              selected={type === MATCH}
-            >
-              {MATCH}
-            </ConfirmButton>
-          </SelectContainer>
-        </PlayerSummaryContainer>
-        <PlayerSummaryContainer header={true}>
-          <NameContainer>name</NameContainer>
-          {course.map((holeData) => {
-            return (
-              <ScoreContainer key={holeData.hole} header={true}>
-                {holeData.hole}
-              </ScoreContainer>
-            );
-          })}
-          <TotalScoreContainer>
-            <EqualizerIcon></EqualizerIcon>
-          </TotalScoreContainer>
-        </PlayerSummaryContainer>
-        {type === POINTS && getPointsSummary()}
-        {type === STROKES && getStrokesSummary()}
-        {type === MATCH && getMatchSummary()}
-      </>
+      <PlayerSummaryContainer>
+        <SelectContainer>
+          <ConfirmButton
+            onClick={() => {
+              setType(STROKES);
+            }}
+            selected={type === STROKES}
+          >
+            {STROKES}
+          </ConfirmButton>
+          <ConfirmButton
+            onClick={() => {
+              setType(POINTS);
+            }}
+            selected={type === POINTS}
+          >
+            {POINTS}
+          </ConfirmButton>
+          <ConfirmButton
+            onClick={() => {
+              setType(MATCH);
+            }}
+            selected={type === MATCH}
+          >
+            {MATCH}
+          </ConfirmButton>
+        </SelectContainer>
+      </PlayerSummaryContainer>
+      <PlayerSummaryContainer header={true}>
+        <NameContainer>name</NameContainer>
+        {course.map((holeData) => {
+          return (
+            <ScoreContainer key={holeData.hole} header={true}>
+              {holeData.hole}
+            </ScoreContainer>
+          );
+        })}
+        <TotalScoreContainer>
+          <EqualizerIcon></EqualizerIcon>
+        </TotalScoreContainer>
+      </PlayerSummaryContainer>
+      {type === POINTS && getPointsSummary()}
+      {type === STROKES && getStrokesSummary()}
+      {type === MATCH && getMatchSummary()}
     </SummaryContainer>
   );
 };
