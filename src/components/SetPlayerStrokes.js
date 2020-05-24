@@ -80,27 +80,27 @@ const SetPlayerStrokes = ({ player, holeData }) => {
       stop();
       setIsListening(false);
       setNewStrokes(validInput);
-
-      speak({ text: result || "none" });
-      if (result === 1) {
+      speak({ text: validInput || "none" });
+      if (validInput === 1) {
         speak({ text: "hole in one!" });
         speak({ text: `congratulations, ${player.name}` });
-      } else if (result === holeData.par - 3) {
+      } else if (validInput === holeData.par - 3) {
         speak({ text: "albatros!" });
         speak({ text: `brilliant, ${player.name}` });
-      } else if (result === holeData.par - 2) {
+      } else if (validInput === holeData.par - 2) {
         speak({ text: "eagle!" });
         speak({ text: `splendid, ${player.name}` });
-      } else if (result === holeData.par - 1) {
+      } else if (validInput === holeData.par - 1) {
         speak({ text: "birdie!" });
         speak({ text: `well done, ${player.name}` });
-      } else if (result === holeData.par) {
+      } else if (validInput === holeData.par) {
         speak({ text: "par!" });
-      } else if (result > holeData.par + 3) {
+      } else if (validInput > holeData.par + 3) {
         speak({ text: `you suck, ${player.name}` });
       }
     }
-  }, [holeData.par, player.name, result, speak, stop]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [holeData.par, player.name, result]);
 
   const strokeInputHandler = (input) => {
     if (isNaN(input) || input === "") {
