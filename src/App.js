@@ -13,24 +13,22 @@ const App = () => {
   const history = createBrowserHistory();
 
   return (
-    <React.Fragment>
-      <ThemeProvider theme={theme}>
-        <StateProvider>
-          <Router history={history}>
-            <Switch>
-              <Route path="/" exact component={StartPage}></Route>
-              <Route path="/hole" exact component={HolePage}></Route>
-              <Route
-                path="/round-completed"
-                exact
-                component={RoundCompletedPage}
-              ></Route>
-              <Route path="*" component={NotFoundPage}></Route>
-            </Switch>
-          </Router>
-        </StateProvider>
-      </ThemeProvider>
-    </React.Fragment>
+    <ThemeProvider theme={theme}>
+      <StateProvider>
+        <Router history={history}>
+          <Switch>
+            <Route path="/" exact component={StartPage}></Route>
+            <Route path="/hole" exact component={HolePage}></Route>
+            <Route
+              path="/round-completed"
+              exact
+              component={RoundCompletedPage}
+            ></Route>
+            <Route path="*" component={NotFoundPage}></Route>
+          </Switch>
+        </Router>
+      </StateProvider>
+    </ThemeProvider>
   );
 };
 

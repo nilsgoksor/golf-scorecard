@@ -19,7 +19,7 @@ const SetPlayerStrokes = ({ player, holeData }) => {
   });
 
   const [isListening, setIsListening] = useState(false);
-  const [listeningDisabled, setIsListeningDisabled] = useState(!window.chrome);
+  const listeningDisabled = !window.chrome;
   const inputScoreRef = useRef(null);
 
   const tryToListen = () => {

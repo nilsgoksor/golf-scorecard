@@ -6,13 +6,7 @@ export const StateContext = createContext();
 export const StateProvider = ({ children }) => {
   const localState = JSON.parse(localStorage.getItem("state"));
 
-  const [contextState, contextDispatch] = useReducer(
-    reducer,
-    localState || initialState
-  );
-  const state = contextState;
-  const dispatch = contextDispatch;
-
+  const [state, dispatch] = useReducer(reducer, localState || initialState);
   useEffect(() => {
     localStorage.setItem("state", JSON.stringify(state));
   }, [state]);

@@ -15,24 +15,18 @@ const HoleSwitcher = ({ holeData }) => {
 
   const [nextHole, setNextHole] = useState(hole);
 
+  useEffect(() => {
+    dispatch({
+      type: SET_HOLE,
+      hole: nextHole,
+    });
+  }, [dispatch, hole, nextHole]);
+
   const changeHole = (input) => {
     if (input === "" || (parseInt(input) > 0 && parseInt(input) <= 9)) {
-      setNextHole(input);
+      setNextHole(parseInt(input));
     }
   };
-
-  useEffect(() => {
-    if (
-      parseInt(nextHole) > 0 &&
-      parseInt(nextHole) <= 9 &&
-      nextHole !== hole
-    ) {
-      dispatch({
-        type: SET_HOLE,
-        hole: parseInt(nextHole),
-      });
-    }
-  }, [dispatch, hole, nextHole]);
 
   return (
     <HoleSwitcherContainer>
@@ -56,9 +50,11 @@ const HoleSwitcher = ({ holeData }) => {
               changeHole(e.target.value);
             }}
           />
-          <MediumHeading>{holeData.name}</MediumHeading>
+          <MediumHeading>{holeData && holeData.name}</MediumHeading>
         </HoleNameContainer>
-        <SmallText>{`par ${holeData.par} - ${holeData.length} m`}</SmallText>
+        <SmallText>{`par ${holeData && holeData.par} - ${
+          holeData && holeData.length
+        } m`}</SmallText>
       </HoleInfoContainer>
       <ArrowContainer
         onClick={() => {

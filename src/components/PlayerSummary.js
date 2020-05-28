@@ -76,6 +76,7 @@ const PlayerSummary = () => {
                   ) {
                     compareScore = p.roundData[holeData.hole - 1].data.score;
                   }
+                  return compareScore;
                 });
                 let matchPoints = 0;
                 if (holeData.data.score > compareScore) {
