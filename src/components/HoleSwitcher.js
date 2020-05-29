@@ -16,10 +16,12 @@ const HoleSwitcher = ({ holeData }) => {
   const [nextHole, setNextHole] = useState(hole);
 
   useEffect(() => {
-    dispatch({
-      type: SET_HOLE,
-      hole: nextHole,
-    });
+    if (nextHole !== hole) {
+      dispatch({
+        type: SET_HOLE,
+        hole: nextHole,
+      });
+    }
   }, [dispatch, hole, nextHole]);
 
   const changeHole = (input) => {

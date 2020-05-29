@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 import { initialState, reducer } from "./reducer";
 
-export const StateContext = createContext();
+const StateContext = createContext();
 
 export const StateProvider = ({ children }) => {
   const localState = JSON.parse(localStorage.getItem("state"));
